@@ -1,0 +1,290 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+		min-height: 100%
+}
+
+body {
+	background-image: radial-gradient(#e2e2e6, #eaeaf0, #e2e2e6);
+}
+
+footer {
+	text-align: center;
+	margin-bottom: 10px;
+	font-size: 10pt;
+}
+
+hr {
+	align-self: center;
+	background-color: #959595;
+	height: 3px;
+	border-radius: 2px;
+	border: none;
+}
+
+
+
+.layout {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100vh;
+	font-size: 12pt;
+	font-weight: normal;
+	line-height: 150%;
+	font-family: "Source Sans Pro", "Open Sans", Verdana, Arial, sans-serif;
+}
+
+.mainscreen {
+	margin-top: 100px;
+	margin-left: 20vh;
+	margin-right: 20vh;
+	text-align: center;
+}
+
+.text {
+	color: #36363a;
+}
+
+#searchbar {
+	border-style: border-box;
+	border: none;
+	width: 20vw;
+	height: 40px;
+	border-radius: 6px;
+	text-align: center;
+	outline: none;
+	background-color: #c7c7cf;
+	color: #36363a;
+	transition: background-color 0.1s ease-in-out;
+}
+
+#searchbar:focus {
+	background-color: #c0c0c9;
+	transition: background-color 0.1s ease;
+
+}
+
+.headers {
+	color: #36363a;
+	font-family: "Noto Sans", "Source Sans Pro", "Open Sans", Verdana, Arial, sans-serif;
+	font-weight: 500;
+	padding-bottom: 50px;
+}
+
+.hoverlink {
+	color: unset;
+	text-decoration: none; !important
+}
+
+.hoverlink:hover {
+	text-decoration-line: underline; !important
+}
+
+.hoverlink:active {
+	color: #26262a;
+}
+
+#settings {
+	margin: 6px 10px 10px 10px;
+	box-sizing: border-box;
+	width: 30px;
+	position: absolute;
+	z-index: 2;
+	display: block;
+
+}
+
+
+#settings:hover {
+	cursor: pointer;
+}
+
+#settings_menu {
+	position: absolute;
+	padding-top: 40px;
+	width: 15vw;
+	min-height: 100%;
+	background-color: rgba(60, 60, 74, 0.2);
+	color: #49494e;
+	z-index: 0;
+	transition: opacity 1s ease;
+	display: none;
+
+
+}
+
+.menuline {
+	box-sizing: border-box;
+	margin-top: 4px;
+	margin-bottom: 4px;
+
+	width: 35px;
+	height: 4px;
+	border-radius: 5px;
+	background-color: #aaaaad;
+	transition: background-color 0.2s ease;
+
+}
+
+#settings:hover .menuline, #settings_open:hover .line1, #settings_open:hover .line2 {
+	background-color: #80808b;
+	transition: background-color 0.2s ease;
+}
+
+#settings_open {
+	display: none;
+	margin: 6px 10px 10px 10px;
+	box-sizing: border-box;
+	position: absolute;
+	z-index: 2;
+	display: none;
+}
+
+.line1 {
+	margin-bottom: 20px;
+	width: 35px;
+	height: 4px;
+	transform: translateY(12px) rotate(45deg);
+
+	background-color: #aaaaad;
+
+}
+
+.line2 {
+
+	width: 35px;
+	height: 4px;
+	
+	transform: translateY(-12px) rotate(-45deg);
+
+	background-color: #aaaaad;
+
+}
+
+
+
+
+.settings_header {
+	font-weight: bold;
+	font-size: 14pt;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.settings_text {
+	text-align: center;
+	align-items: center;
+}
+
+button#apply, select {
+	min-width: 100px;
+	min-height: 30px;
+	background-color: #e2e2e6;
+	color: inherit;
+	border-color: #a2a2a8;
+	border-width: 1px;
+	border-radius: 4px;
+}
+
+select {
+	border: none;
+	font-weight: 500;
+}
+
+.icons {
+	margin-top: 15px;
+	margin-bottom: 6px;
+}
+
+.icons a {
+	text-decoration: none;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+
+#settings_applied {
+	margin-top: 10px;
+	font-size: 11pt;
+}
+
+@media only screen and (max-width: 720px)
+{
+	#settings_menu {
+		width: 108px;
+	}
+	
+}
+
+@media only screen and (max-width: 992px)
+{
+	#searchbar {
+		width: 198.4px;
+	}
+}
+
+@media only screen and (min-width: 1536px)
+{
+	#settings_menu {
+		width: 230.4px;
+	}
+}
+
+
+/* Themes */
+@media only screen and (prefers-color-scheme: dark)
+{
+	button#apply, select {
+		background-color: #56565b;
+		color: inherit;
+		border-color: #626268;
+	}
+	#settings_menu {
+
+		background-color: rgba(160, 160, 174, 0.2);
+		color: #d4d4d7;
+	}
+
+	.showmenu {
+		color: #9f9fa4;
+	}
+
+
+	.menuline {
+		background-color: #80808b;
+	}
+
+	#settings:hover .menuline, #settings_open:hover .line1, #settings_open:hover .line2 {
+		background-color: #d4d4d7;
+	}
+
+	body {
+		background-image: radial-gradient(#242422, #24242a, #242422);
+	}
+
+	hr {
+		background-color: #656565;
+	}
+
+	.text {
+		color: #dfdfe3;
+	}
+
+	#searchbar {
+		background-color: #29292d;
+		color: #9f9fa4;
+	}
+
+	#searchbar:focus {
+		background-color: #353539;
+	}
+
+	.headers {
+		color: #b3b3b3;
+	}
+}
