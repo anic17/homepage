@@ -3,19 +3,22 @@
 <head>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&family=Open+Sans:wght@400;500;700&display=swap" rel="stylesheet"> 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Homepage</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 	</script>
-	<noscript>This page requires JavaScript to work</noscript>
 </head>
 <body>
+
 	<div class="layout">
+
 		<!-- Begins the settings part -->
-		<div id="settings" onclick="showSettings(event)">
+		<div id="settings" onclick="showSettings(event)" title="Open the settings">
 			<div class="menuline">
 			</div>
 			<div class="menuline">
@@ -23,7 +26,7 @@
 			<div class="menuline">
 			</div>
 		</div>
-		<div id="settings_open" onclick="showSettings(event)">
+		<div id="settings_open" onclick="showSettings(event)" title="Close the settings">
 			<div class="line1">
 			</div>
 			<div class="line2">
@@ -37,7 +40,7 @@
 					Default search engine
 				</div>
 				
-				<select id="settings_engine">
+				<select id="settings_engine" title="Choose the search engine">
 					<option value="DuckDuckGo">DuckDuckGo</option>
 					<option value="Google">Google</option>
 					<option value="Ecosia">Ecosia</option>
@@ -46,7 +49,7 @@
 				</select>
 				<br>
 				<br>
-				<button id="apply" onclick="applySettings()">
+				<button id="apply" onclick="applySettings()" title="Apply the new settings">
 					Apply changes
 				</button>
 				<br>
@@ -60,29 +63,36 @@
 
 		<!-- Begins the start page -->
 		<div class="mainscreen">
+			<noscript class="text headers">
+				<h1>This page requires JavaScript to work</h1>
+				<br>
+				<br>
+			</noscript>
 
-			<h2 class="headers">Start page</h2>
-			<input id="searchbar" type="text" placeholder="Search with DuckDuckGo">
+			<h1 class="headers">Homepage</h1>
+
+			<input id="searchbar" type="text" placeholder="Search with DuckDuckGo" title="Search the web">
 
 			<div class="icons">
 	       	    	<a href="https://github.com"><img 
-	       	     width=25 height=25 src="assets/icons/github.svg"></a><a href="https://youtube.com"><img
-	       	     width=25 height=25 src="assets/icons/youtube.svg"></a><a href="https://reddit.com"><img
-	       	     width=25 height=25 src="assets/icons/reddit.svg"></a><a href="https://stackoverflow.com"><img
-				 width=25 height=25 src="assets/icons/stack-overflow.svg"></a><a href="https://twitch.tv"><img
-				 width=25 height=25 src="assets/icons/twitch.svg"><a href="https://twitter.com"><img
-	       	     width=25 height=25 src="assets/icons/twitter.svg"><a href="https://wikipedia.org"><img
-	       	     width=25 height=25 src="assets/icons/wikipedia.svg">
+	       	     width=32 height=32 src="assets/icons/github.svg" title="GitHub"></a><a href="https://youtube.com"><img
+	       	     width=32 height=32 src="assets/icons/youtube.svg" title="YouTube"></a><a href="https://reddit.com"><img
+	       	     width=32 height=32 src="assets/icons/reddit.svg" title="Reddit"></a><a href="https://stackoverflow.com"><img
+				 width=32 height=32 src="assets/icons/stack-overflow.svg" title="Stack Overflow"></a><a href="https://twitch.tv"><img
+				 width=32 height=32 src="assets/icons/twitch.svg" title="Twitch"><a href="https://twitter.com"><img
+	       	     width=32 height=32 src="assets/icons/twitter.svg" title="Twitter"><a href="https://wikipedia.org"><img
+	       	     width=32 height=32 src="assets/icons/wikipedia.svg" title="Wikipedia">
 	       	    </a>
 	       	</div>
-	       	<hr>
+	       	<hr id="hrfocus">
 
 	       	<br>
 
-			<footer class="text">
-				Made by <a class="hoverlink" href="https://github.com/anic17">anic17</a>
-			</footer>
+			
 		</div>
+		<footer class="text">
+			Made by <a class="hoverlink" href="https://github.com/anic17">anic17</a>.<br>
+		</footer>
 	</div>
     <script src="index.js"></script>
 </body>

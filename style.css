@@ -5,7 +5,7 @@
 }
 
 html {
-		min-height: 100%
+	min-height: 100%
 }
 
 body {
@@ -13,12 +13,15 @@ body {
 }
 
 footer {
-	text-align: center;
+	margin-right: 10px;
+	text-align: right;
 	margin-bottom: 10px;
 	font-size: 10pt;
 }
 
 hr {
+	margin: auto;
+	width: 25vw;
 	align-self: center;
 	background-color: #959595;
 	height: 3px;
@@ -35,12 +38,12 @@ hr {
 	min-height: 100vh;
 	font-size: 12pt;
 	font-weight: normal;
-	line-height: 150%;
+	line-height: 140%;
 	font-family: "Source Sans Pro", "Open Sans", Verdana, Arial, sans-serif;
 }
 
 .mainscreen {
-	margin-top: 100px;
+	margin-top: 30vh;
 	margin-left: 20vh;
 	margin-right: 20vh;
 	text-align: center;
@@ -54,9 +57,10 @@ hr {
 	border-style: border-box;
 	border: none;
 	width: 20vw;
-	height: 40px;
+	height: 45px;
 	border-radius: 6px;
 	text-align: center;
+	font-size: 11pt;
 	outline: none;
 	background-color: #c7c7cf;
 	color: #36363a;
@@ -66,12 +70,24 @@ hr {
 #searchbar:focus {
 	background-color: #c0c0c9;
 	transition: background-color 0.1s ease;
+}
+
+
+#hrfocus {
+	background-color: #959595;
 
 }
 
+#searchbar:focus ~ div ~ #hrfocus {
+	background-color: #a9a9c2;
+	transition: background-color 1s ease;
+}
+
+
+
 .headers {
 	color: #36363a;
-	font-family: "Noto Sans", "Source Sans Pro", "Open Sans", Verdana, Arial, sans-serif;
+	font-family: "Open Sans", "Noto Sans", "Source Sans Pro",, Verdana, Arial, sans-serif;
 	font-weight: 500;
 	padding-bottom: 50px;
 }
@@ -100,7 +116,7 @@ hr {
 }
 
 
-#settings:hover {
+#settings:hover, #settings_open:hover {
 	cursor: pointer;
 }
 
@@ -150,7 +166,6 @@ hr {
 	width: 35px;
 	height: 4px;
 	transform: translateY(12px) rotate(45deg);
-
 	background-color: #aaaaad;
 
 }
@@ -159,24 +174,20 @@ hr {
 
 	width: 35px;
 	height: 4px;
-	
 	transform: translateY(-12px) rotate(-45deg);
-
 	background-color: #aaaaad;
 
 }
-
-
-
 
 .settings_header {
 	font-weight: bold;
 	font-size: 14pt;
 	text-align: center;
-	margin-bottom: 5px;
+	margin-bottom: 10px;
 }
 
 .settings_text {
+	margin-top: 10px;
 	text-align: center;
 	align-items: center;
 }
@@ -197,20 +208,34 @@ select {
 }
 
 .icons {
-	margin-top: 15px;
-	margin-bottom: 6px;
+	margin-top: 25px;
+	margin-bottom: 15px;
 }
 
 .icons a {
 	text-decoration: none;
-	margin-left: 2px;
-	margin-right: 2px;
+	margin-left: 3px;
+	margin-right: 3px;
 }
-
 
 #settings_applied {
 	margin-top: 10px;
 	font-size: 11pt;
+	color: #49494e;
+}
+
+noscript {
+	color: inherit;
+}
+
+@media only screen and (max-width: 600px)
+{
+	hr {
+		width: 150px;
+	}
+	.mainscreen {
+		width: calc(20vw - 600px/100vw);
+	}
 }
 
 @media only screen and (max-width: 720px)
@@ -218,7 +243,9 @@ select {
 	#settings_menu {
 		width: 108px;
 	}
-	
+	button#apply, select {
+		width: 100px;
+	}
 }
 
 @media only screen and (max-width: 992px)
@@ -250,6 +277,10 @@ select {
 		color: #d4d4d7;
 	}
 
+	#settings_applied {
+		color: #d4d4d7;
+	}
+
 	.showmenu {
 		color: #9f9fa4;
 	}
@@ -267,9 +298,14 @@ select {
 		background-image: radial-gradient(#242422, #24242a, #242422);
 	}
 
-	hr {
+	hr, #hrfocus {
 		background-color: #656565;
 	}
+
+	#searchbar:focus ~ div ~ #hrfocus {
+		background-color: #8c8c8f;
+	}
+
 
 	.text {
 		color: #dfdfe3;

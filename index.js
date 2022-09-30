@@ -66,17 +66,22 @@ function getSearchEngine()
 const searchBox = document.getElementById('searchbar')
 
 searchBox.addEventListener('keydown', (e) => {
-  if (e.code == 'Enter') {
-        var regex = new RegExp('^(http://|https://|www)');
+    if (e.code == 'Enter')
+    {
         let textfield = document.getElementById('searchbar').value;
-        let url;
-        if(regex.test(textfield))
+        if(textfield)
         {
-            url = textfield;
-        } else {
-            url = getSearchEngine() + encodeURIComponent(textfield);
+            var regex = new RegExp('^(http://|https://|www)');
+            let url;
+            if(regex.test(textfield))
+            {
+                url = textfield;
+            } else {
+                url = getSearchEngine() + encodeURIComponent(textfield);
+            }
+            window.location = url;
         }
-        window.location = url;
+     
   }
 })
 
