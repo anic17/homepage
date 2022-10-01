@@ -62,13 +62,13 @@ hr {
 	text-align: center;
 	font-size: 11pt;
 	outline: none;
-	background-color: #c7c7cf;
+	background-color: #cccccf;
 	color: #36363a;
 	transition: background-color 0.1s ease-in-out;
 }
 
 #searchbar:focus {
-	background-color: #c0c0c9;
+	background-color: #c0c0c3;
 	transition: background-color 0.1s ease;
 }
 
@@ -210,6 +210,8 @@ select {
 .icons {
 	margin-top: 25px;
 	margin-bottom: 15px;
+	filter: invert(calc(80/255)); /* 140 is 0x8C, color of hr when focusing on the searchbar */
+
 }
 
 .icons a {
