@@ -25,41 +25,62 @@ function getCookie(name) {
 
 /* Engine selection */
 
+const englist = [
+    "DuckDuckGo", 
+    "Google", 
+    "Ecosia", 
+    "Yahoo", 
+    "Brave",
+];
+const searchurl = [
+    "https://duckduckgo.com/?q=",
+    "https://www.google.com/search?q=",
+    "https://www.ecosia.org/search?q=",
+    "https://search.yahoo.com/search?p=",
+    "https://search.brave.com/search?q="
+];
 
 function setSearchEngine(search)
 {
-    if(search == "DuckDuckGo" || search == "Google" || search == "Ecosia" || search == "Yahoo") 
+    for(let k = 0; k < englist.length; k++)
     {
-        console.log(getCookie("engine"));
-        setCookie("engine", search, 20000);
-        return true;
+        if(search == englist[k])
+        {
+            setCookie("engine", search, 20000);
+            return true;
+        }
     }
     return false;
+}
+
+
+function setSelectDefault()
+{
+    document.getElementById('settings_engine').value = getCookie("engine");
+
 }
 
 function getSearchEngine()
 {
     let engine = getCookie("engine");
-
-    let baseurl = "https://duckduckgo.com/?q="
-    if(engine == "Google")
+    
+    let baseurl = null;
+    for(let k = 0; k < englist.length; k++)
     {
-        baseurl = "https://www.google.com/search?q=";
-    } else if(engine == "Ecosia")
-    {
-        baseurl = "https://www.ecosia.org/search?q=";
-    } else if(engine == "Yahoo")
-    {
-        baseurl = "https://search.yahoo.com/search?p=";
-    } else {
-        if(engine != "DuckDuckGo")
+        if(engine == englist[k])
         {
-            console.log("Invalid default search engine (got " + engine + ")");
+            baseurl = searchurl[k]; 
         }
-        engine = "DuckDuckGo";
-        setSearchEngine(engine);
     }
+    if(!baseurl)
+    {
+        console.log("Invalid default search engine (got " + engine + ")");
+        engine = "DuckDuckGo";
+    }
+
+    setSearchEngine(engine);
     setPlaceholder(engine);
+    setSelectDefault();
     return baseurl;
 }
 
@@ -79,21 +100,11 @@ searchBox.addEventListener('keydown', (e) => {
             } else {
                 url = getSearchEngine() + encodeURIComponent(textfield);
             }
-            window.location = url;
+            window.location.href = url;
         }
      
   }
 })
-
-function lowerCase(event) {
-    if(event == 13)
-    {
-        let baseurl = getSearchEngine();
-        let textfield = document.getElementById('searchbar').value;
-        let url = baseurl + encodeURIComponent(textfield);
-        window.location.href = url;
-    }
-}
 
 function choose(val)
 {
@@ -122,8 +133,6 @@ function showSettings()
 
     // Hide "Settings applied"
     document.getElementById("settings_applied").setAttribute("style", "display: none"); 
-
-
 }
 
 function setPlaceholder(eng)
@@ -132,6 +141,7 @@ function setPlaceholder(eng)
     searchbar.placeholder = 'Search with ' + eng;
 }
 
+
 function applySettings()
 {
     let engine = document.getElementById("settings_engine").value;
@@ -139,7 +149,9 @@ function applySettings()
     {
       document.getElementById("settings_applied").setAttribute("style", "display: block");    
     }
-    setPlaceholder(getCookie("engine"));
+
+    setPlaceholder(engine);
+    setSelectDefault();
 }
 
 window.onload = getSearchEngine();

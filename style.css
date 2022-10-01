@@ -202,9 +202,13 @@ button#apply, select {
 	border-radius: 4px;
 }
 
-select {
+select, option {
+	vertical-align: middle;
+
 	border: none;
 	font-weight: 500;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .icons {
