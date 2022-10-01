@@ -220,7 +220,6 @@ select, option {
 .icons {
 	margin-top: 25px;
 	margin-bottom: 15px;
-	filter: invert(calc(80/255)); /* 140 is 0x8C, color of hr when focusing on the searchbar */
 
 }
 
@@ -228,6 +227,17 @@ select, option {
 	text-decoration: none;
 	margin-left: 3px;
 	margin-right: 3px;
+}
+
+.icons a img {
+	filter: invert(calc(80/255));
+	transition: filter 0.2s ease-in-out;
+}
+
+.icons a img:hover {
+	filter: invert(calc(110/255));
+	transition: filter 0.2s ease-in-out;
+
 }
 
 #settings_applied {
@@ -348,7 +358,11 @@ noscript {
 	.headers {
 		color: #b3b3b3;
 	}
-	.icons {
-	     filter: invert(calc(140/255)); /* 140 is 0x8C, color of hr when focusing on the searchbar */
+	.icons a img {
+		filter: invert(calc(140/255));
+	}
+
+	.icons a img:hover {
+		filter: invert(calc(170/255));
 	}
 }
