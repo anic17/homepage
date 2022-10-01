@@ -9,7 +9,7 @@ html {
 }
 
 body {
-	background-image: radial-gradient(#e2e2e6, #eaeaf0, #e2e2e6);
+	background-image: radial-gradient(#e2e2e6, #eaeaec, #e2e2e6);
 }
 
 footer {
@@ -187,7 +187,7 @@ hr {
 }
 
 .settings_text {
-	margin-top: 10px;
+	margin-top: 25px;
 	text-align: center;
 	align-items: center;
 }
@@ -230,21 +230,25 @@ noscript {
 
 @media only screen and (max-width: 600px)
 {
-	hr {
-		width: 150px;
-	}
+	
 	.mainscreen {
 		width: calc(20vw - 600px/100vw);
+		margin-left: 10vw;
+		margin-right: 10vw;
 	}
 }
 
 @media only screen and (max-width: 720px)
 {
-	#settings_menu {
-		width: 108px;
-	}
 	button#apply, select {
 		width: 100px;
+	}
+	hr {
+		width: 65vw;
+	}
+	.mainscreen {
+		margin-left: 10vw;
+		margin-right: 10vw;
 	}
 }
 
@@ -252,6 +256,9 @@ noscript {
 {
 	#searchbar {
 		width: 198.4px;
+	}
+	#settings_menu {
+		width: 148.8px;
 	}
 }
 
@@ -262,6 +269,12 @@ noscript {
 	}
 }
 
+@media only screen and (max-height: 320px) /* For extremely low resolutions */
+{
+	.mainscreen {
+		margin-top: 96px;
+	}
+}
 
 /* Themes */
 @media only screen and (prefers-color-scheme: dark)
@@ -295,7 +308,7 @@ noscript {
 	}
 
 	body {
-		background-image: radial-gradient(#242422, #24242a, #242422);
+		background-image: radial-gradient(#242426, #24242c, #242426);
 	}
 
 	hr, #hrfocus {
@@ -322,5 +335,8 @@ noscript {
 
 	.headers {
 		color: #b3b3b3;
+	}
+	.icons {
+	     filter: invert(calc(140/255)); /* 140 is 0x8C, color of hr when focusing on the searchbar */
 	}
 }
