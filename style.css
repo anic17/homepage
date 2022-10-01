@@ -128,10 +128,16 @@ hr {
 	background-color: rgba(60, 60, 74, 0.2);
 	color: #49494e;
 	z-index: 0;
-	transition: opacity 1s ease;
 	display: none;
+}
 
+.open_settings {
+	background-color: #f0f;
+	display: block;
+}
 
+.close_settings {
+	display: none;
 }
 
 .menuline {

@@ -29,15 +29,17 @@ const englist = [
     "DuckDuckGo", 
     "Google", 
     "Ecosia", 
-    "Yahoo", 
     "Brave",
+    "Bing",
+    "Yahoo", 
 ];
 const searchurl = [
     "https://duckduckgo.com/?q=",
     "https://www.google.com/search?q=",
     "https://www.ecosia.org/search?q=",
+    "https://search.brave.com/search?q=",
+    "https://www.bing.com/search?q=",
     "https://search.yahoo.com/search?p=",
-    "https://search.brave.com/search?q="
 ];
 
 function setSearchEngine(search)
@@ -84,26 +86,32 @@ function getSearchEngine()
     return baseurl;
 }
 
+
+function searchWeb()
+{
+    let textfield = document.getElementById('searchbar').value;
+    if(textfield)
+    {
+        var regex = new RegExp('^(http://|https://|www)');
+        let url;
+        if(regex.test(textfield))
+        {
+            url = textfield;
+        } else {
+            url = getSearchEngine() + encodeURIComponent(textfield);
+        }
+        window.location = url;
+    }
+}
+
 const searchBox = document.getElementById('searchbar')
 
 searchBox.addEventListener('keydown', (e) => {
-    if (e.code == 'Enter')
+    console.log(e.keyCode);
+    if (e.keyCode == 13)
     {
-        let textfield = document.getElementById('searchbar').value;
-        if(textfield)
-        {
-            var regex = new RegExp('^(http://|https://|www)');
-            let url;
-            if(regex.test(textfield))
-            {
-                url = textfield;
-            } else {
-                url = getSearchEngine() + encodeURIComponent(textfield);
-            }
-            window.location.href = url;
-        }
-     
-  }
+       searchWeb(); 
+    }
 })
 
 function choose(val)
@@ -134,6 +142,7 @@ function showSettings()
     // Hide "Settings applied"
     document.getElementById("settings_applied").setAttribute("style", "display: none"); 
 }
+
 
 function setPlaceholder(eng)
 {
