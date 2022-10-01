@@ -14,7 +14,7 @@ There are 4 search engines available:
  - Ecosia
  - Yahoo
 
-Open the settings at the bottom top and choose your preferred search engine.
+Open the settings at the top left and choose your preferred search engine.
 
 ## Live demo
 Here's a [live demo](https://anic17.github.io/homepage) of the homepage. The homepage will be added soon as a browser extension.
