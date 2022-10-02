@@ -83,7 +83,7 @@ hr {
 
 .headers {
 	color: #36363a;
-	font-family: "Open Sans", "Noto Sans", "Source Sans Pro", Verdana, Arial, sans-serif;
+	/*font-family: "Open Sans", "Noto Sans", "Source Sans Pro", Verdana, Arial, sans-serif;*/
 	font-weight: 500;
 	padding-bottom: 50px;
 }
@@ -139,11 +139,6 @@ hr {
 	transition: background-color 0.2s ease;
 }
 
-#settings:hover .menuline, #settings_open:hover .line1, #settings_open:hover .line2 {
-	background-color: #80808b;
-	transition: background-color 0.2s ease;
-}
-
 #settings_open {
 	display: none;
 	margin: 6px 10px 10px 10px;
@@ -171,13 +166,14 @@ hr {
 .settings_header {
 	font-weight: bold;
 	font-size: 14pt;
-	/*text-align: center;*/
+	text-align: center;
 	margin-bottom: 10px;
 }
 
 .settings_text {
 	margin-top: 25px;
 	text-align: center;
+	align-items: center;
 }
 
 button#apply, select {
@@ -205,6 +201,12 @@ select, option {
 	margin-bottom: 15px;
 }
 
+.icons a {
+	text-decoration: none;
+	margin-left: 3px;
+	margin-right: 3px;
+}
+
 .icons a img {
 	filter: invert(calc(80/255));
 	transition: filter 0.2s ease-in-out;
@@ -213,7 +215,6 @@ select, option {
 .icons a img:hover {
 	filter: invert(calc(110/255));
 	transition: filter 0.2s ease-in-out;
-
 }
 
 #settings_applied {
