@@ -25,9 +25,9 @@ Here's a [live demo](https://anic17.github.io/homepage) of the homepage. The hom
 <table>
   <tr>
     <td align="center" width=180px><a href="https://github.com/anic17"><img src="https://avatars.githubusercontent.com/u/58483910?v=4?s=64" width="64px;" /><br /><sub><b>anic17</b></sub></a><br>Project creation<br></td>
-    <td align="center" width=180px><a href="https://github.com/ZackeryRSmith"><img src="https://avatars.githubusercontent.com/u/72983221?v=4?s=64" width="64px;" alt=""/><br /><sub><b>ZackeryRSmith</b></sub></a><br>Readme improvements</td>
+    <td align="center" width=180px><a href="https://github.com/ZackeryRSmith"><img src="https://avatars.githubusercontent.com/u/72983221?v=4?s=64" width="64px;" alt=""/><br /><sub><b>ZackeryRSmith</b></sub></a><br>Bug fixes</td>
   </tr>
 </table>
 
 
-<br />**Copyright &copy; 2022 anic17 Software**
+**Copyright &copy; 2022 anic17 Software**
