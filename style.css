@@ -73,12 +73,12 @@ hr {
 
 #hrfocus {
 	background-color: #959595;
-
+	transition: background-color 0.1s ease-in-out;
 }
 
 #searchbar:focus ~ div ~ #hrfocus {
 	background-color: #a9a9c2;
-	transition: background-color 1s ease;
+	transition: background-color 0.1s ease-in-out;
 }
 
 .headers {
@@ -115,7 +115,7 @@ hr {
 	cursor: pointer;
 }
 
-#settings_menu {
+.settings_menu {
 	position: absolute;
 	padding-top: 40px;
 	width: 15vw;
@@ -124,7 +124,8 @@ hr {
 	color: #49494e;
 	z-index: 0;
 	transition: opacity 1s ease;
-	display: none;
+	visibility: hidden;
+	transform: translateX(-15vw);
 }
 
 .menuline {
@@ -177,14 +178,15 @@ hr {
 }
 
 button#apply, select {
-	min-width: 100px;
-	min-height: 30px;
+	width: 100px;
+	height: 30px;
 	background-color: #e2e2e6;
 	color: inherit;
 	border-color: #a2a2a8;
 	border-width: 1px;
 	border-radius: 4px;
 }
+
 
 select, option {
 	vertical-align: middle;
@@ -256,14 +258,14 @@ noscript {
 	#searchbar {
 		width: 198.4px;
 	}
-	#settings_menu {
+	.settings_menu {
 		width: 148.8px;
 	}
 }
 
 @media only screen and (min-width: 1536px)
 {
-	#settings_menu {
+	.settings_menu {
 		width: 230.4px;
 	}
 }
@@ -273,6 +275,7 @@ noscript {
 	.mainscreen {
 		margin-top: 96px;
 	}
+
 }
 
 /* Themes */
@@ -283,7 +286,7 @@ noscript {
 		color: inherit;
 		border-color: #626268;
 	}
-	#settings_menu {
+	.settings_menu {
 
 		background-color: rgba(160, 160, 174, 0.2);
 		color: #d4d4d7;
@@ -314,7 +317,7 @@ noscript {
 	}
 
 	#searchbar:focus ~ div ~ #hrfocus {
-		background-color: #8c8c8f;
+		background-color: #8f8f90;
 	}
 
 	.text {
@@ -339,6 +342,6 @@ noscript {
 	}
 
 	.icons a img:hover {
-		filter: invert(calc(170/255));
+		filter: invert(calc(175/255));
 	}
 }

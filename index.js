@@ -66,7 +66,9 @@ function getSearchEngine()
     for(let k = 0; k < englist.length; k++)
     {
         if(engine == englist[k])
+        {
             baseurl = queryurl[k];
+        }
     }
     if(!baseurl)
     {
@@ -88,7 +90,7 @@ searchBox.addEventListener('keydown', (e) => {
         let textfield = document.getElementById('searchbar').value;
         if(textfield)
         {
-            var regex = new RegExp('^(http://|https://|www)');
+            var regex = new RegExp('^(http://|https://)');
             let url;
             if(regex.test(textfield))
             {
@@ -116,7 +118,31 @@ function showSettings()
 
     showSettings.openc %= 2;
 
-    document.getElementById("settings_menu").setAttribute("style", "display: " + choose(showSettings.openc)); 
+    let showMenu = `
+        visibility: visible;
+        transition: all 0.3s ease;
+        transform: translateX(0px);
+    `;
+    let hideMenu = `
+        visibility: hidden;
+        transition: all 0.3s ease;
+        transform: 
+    `;
+    let vw = window.innerWidth;
+    if(vw >= 1536)
+    {
+        hideMenu += "translateX(-230.4px);"
+    } else if(vw < 1536 && vw > 992)
+    {
+        hideMenu += "translateX(-15vw);"
+    } else {
+        hideMenu += "translateX(-148.8px);"
+    }
+
+
+    const settings = document.querySelector('.settings_menu');
+    showSettings.openc ? (settings.style.cssText = showMenu) : (settings.style.cssText = hideMenu);
+    
 
     document.getElementById("settings_open").setAttribute("style", "display: " + choose(showSettings.openc));
     document.getElementById("settings").setAttribute("style", "display: " + choose(!showSettings.openc));
