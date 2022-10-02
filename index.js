@@ -31,26 +31,23 @@ const englist = [
     "Ecosia", 
     "Brave",
     "Bing",
-    "Yahoo", 
+    "Yahoo" 
 ];
-const searchurl = [
+const queryurl = [
     "https://duckduckgo.com/?q=",
     "https://www.google.com/search?q=",
     "https://www.ecosia.org/search?q=",
     "https://search.brave.com/search?q=",
     "https://www.bing.com/search?q=",
-    "https://search.yahoo.com/search?p=",
+    "https://search.yahoo.com/search?p="
 ];
 
 function setSearchEngine(search)
 {
-    for(let k = 0; k < englist.length; k++)
+    if (englist.includes(search))
     {
-        if(search == englist[k])
-        {
-            setCookie("engine", search, 20000);
-            return true;
-        }
+        setCookie("engine", search, 20000);
+        return true;
     }
     return false;
 }
@@ -59,7 +56,6 @@ function setSearchEngine(search)
 function setSelectDefault()
 {
     document.getElementById('settings_engine').value = getCookie("engine");
-
 }
 
 function getSearchEngine()
@@ -70,9 +66,7 @@ function getSearchEngine()
     for(let k = 0; k < englist.length; k++)
     {
         if(engine == englist[k])
-        {
-            baseurl = searchurl[k]; 
-        }
+            baseurl = queryurl[k];
     }
     if(!baseurl)
     {
@@ -86,50 +80,38 @@ function getSearchEngine()
     return baseurl;
 }
 
-
-function searchWeb()
-{
-    let textfield = document.getElementById('searchbar').value;
-    if(textfield)
-    {
-        var regex = new RegExp('^(http://|https://|www)');
-        let url;
-        if(regex.test(textfield))
-        {
-            url = textfield;
-        } else {
-            url = getSearchEngine() + encodeURIComponent(textfield);
-        }
-        window.location = url;
-    }
-}
-
 const searchBox = document.getElementById('searchbar')
 
 searchBox.addEventListener('keydown', (e) => {
-    console.log(e.keyCode);
-    if (e.keyCode == 13)
+    if (e.code == 'Enter')
     {
-       searchWeb(); 
-    }
+        let textfield = document.getElementById('searchbar').value;
+        if(textfield)
+        {
+            var regex = new RegExp('^(http://|https://|www)');
+            let url;
+            if(regex.test(textfield))
+            {
+                url = textfield;
+            } else {
+                url = getSearchEngine() + encodeURIComponent(textfield);
+            }
+            window.location.href = url;
+        }
+     
+  }
 })
 
 function choose(val)
 {
-    if(val)
-    {
-        return "block";
-    } else {
-        return "none";
-    }
+    if(val) return "block";
+    else    return "none";
 }
 
 function showSettings()
 {
     if (typeof showSettings.openc == 'undefined')
-    {
         showSettings.openc = 0;
-    }
     showSettings.openc++;
 
     showSettings.openc %= 2;
@@ -143,7 +125,6 @@ function showSettings()
     document.getElementById("settings_applied").setAttribute("style", "display: none"); 
 }
 
-
 function setPlaceholder(eng)
 {
     let searchbar = document.getElementById("searchbar");
@@ -155,9 +136,7 @@ function applySettings()
 {
     let engine = document.getElementById("settings_engine").value;
     if(setSearchEngine(engine))
-    {
-      document.getElementById("settings_applied").setAttribute("style", "display: block");    
-    }
+      document.getElementById("settings_applied").setAttribute("style", "display: block");
 
     setPlaceholder(engine);
     setSelectDefault();

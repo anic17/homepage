@@ -29,8 +29,6 @@ hr {
 	border: none;
 }
 
-
-
 .layout {
 	display: flex;
 	flex-direction: column;
@@ -83,11 +81,9 @@ hr {
 	transition: background-color 1s ease;
 }
 
-
-
 .headers {
 	color: #36363a;
-	font-family: "Open Sans", "Noto Sans", "Source Sans Pro",, Verdana, Arial, sans-serif;
+	/*font-family: "Open Sans", "Noto Sans", "Source Sans Pro", Verdana, Arial, sans-serif;*/
 	font-weight: 500;
 	padding-bottom: 50px;
 }
@@ -112,7 +108,6 @@ hr {
 	position: absolute;
 	z-index: 2;
 	display: block;
-
 }
 
 
@@ -128,15 +123,7 @@ hr {
 	background-color: rgba(60, 60, 74, 0.2);
 	color: #49494e;
 	z-index: 0;
-	display: none;
-}
-
-.open_settings {
-	background-color: #f0f;
-	display: block;
-}
-
-.close_settings {
+	transition: opacity 1s ease;
 	display: none;
 }
 
@@ -149,12 +136,6 @@ hr {
 	height: 4px;
 	border-radius: 5px;
 	background-color: #aaaaad;
-	transition: background-color 0.2s ease;
-
-}
-
-#settings:hover .menuline, #settings_open:hover .line1, #settings_open:hover .line2 {
-	background-color: #80808b;
 	transition: background-color 0.2s ease;
 }
 
@@ -173,16 +154,13 @@ hr {
 	height: 4px;
 	transform: translateY(12px) rotate(45deg);
 	background-color: #aaaaad;
-
 }
 
 .line2 {
-
 	width: 35px;
 	height: 4px;
 	transform: translateY(-12px) rotate(-45deg);
 	background-color: #aaaaad;
-
 }
 
 .settings_header {
@@ -215,12 +193,12 @@ select, option {
 	font-weight: 500;
 	margin-top: auto;
 	margin-bottom: auto;
+	text-align: center;
 }
 
 .icons {
 	margin-top: 25px;
 	margin-bottom: 15px;
-
 }
 
 .icons a {
@@ -237,7 +215,6 @@ select, option {
 .icons a img:hover {
 	filter: invert(calc(110/255));
 	transition: filter 0.2s ease-in-out;
-
 }
 
 #settings_applied {
@@ -320,7 +297,6 @@ noscript {
 		color: #9f9fa4;
 	}
 
-
 	.menuline {
 		background-color: #80808b;
 	}
@@ -341,7 +317,6 @@ noscript {
 		background-color: #8c8c8f;
 	}
 
-
 	.text {
 		color: #dfdfe3;
 	}
@@ -358,6 +333,7 @@ noscript {
 	.headers {
 		color: #b3b3b3;
 	}
+	
 	.icons a img {
 		filter: invert(calc(140/255));
 	}
