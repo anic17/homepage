@@ -90,11 +90,11 @@ hr {
 
 .hoverlink {
 	color: unset;
-	text-decoration: none; !important
+	text-decoration: none;
 }
 
 .hoverlink:hover {
-	text-decoration-line: underline; !important
+	text-decoration-line: underline;
 }
 
 .hoverlink:active {
@@ -122,10 +122,11 @@ hr {
 	min-height: 100%;
 	background-color: rgba(60, 60, 74, 0.2);
 	color: #49494e;
-	z-index: 0;
+	z-index: 1;
 	transition: opacity 1s ease;
 	visibility: hidden;
 	transform: translateX(-15vw);
+	backdrop-filter: blur(4px);
 }
 
 .menuline {
@@ -244,12 +245,23 @@ noscript {
 	button#apply, select {
 		width: 100px;
 	}
-	hr {
-		width: 65vw;
-	}
 	.mainscreen {
 		margin-left: 10vw;
 		margin-right: 10vw;
+	}
+}
+
+@media only screen and (max-width: 864px)
+{
+	hr {
+		width: 216px;
+	}
+}
+
+@media only screen and (max-width: 360px)
+{
+	hr {
+		width: 60vw;
 	}
 }
 

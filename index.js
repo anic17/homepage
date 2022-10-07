@@ -139,8 +139,11 @@ function showSettings()
         hideMenu += "translateX(-148.8px);"
     }
 
+    let settings_height = document.documentElement.getBoundingClientRect().height;
+    document.querySelector('.settings_menu').style.cssText = "min-height: " + settings_height + "px";
 
     const settings = document.querySelector('.settings_menu');
+
     showSettings.openc ? (settings.style.cssText = showMenu) : (settings.style.cssText = hideMenu);
     
 
