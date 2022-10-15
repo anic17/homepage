@@ -152,18 +152,21 @@ hr {
 
 .line1 {
 	margin-bottom: 20px;
-	width: 35px;
-	height: 4px;
 	transform: translateY(12px) rotate(45deg);
-	background-color: #aaaaad;
 }
 
 .line2 {
+	transform: translateY(-12px) rotate(-45deg);
+}
+
+.line1, .line2 {
 	width: 35px;
 	height: 4px;
-	transform: translateY(-12px) rotate(-45deg);
 	background-color: #aaaaad;
+	transition: background-color 0.2s ease;
 }
+
+
 
 .settings_header {
 	font-weight: bold;
@@ -316,7 +319,7 @@ noscript {
 		background-color: #80808b;
 	}
 
-	#settings:hover .menuline, #settings_open:hover .line1, #settings_open:hover .line2 {
+	#settings:hover .menuline, #settings_open:hover div {
 		background-color: #d4d4d7;
 	}
 
