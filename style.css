@@ -83,9 +83,9 @@ hr {
 
 .headers {
 	color: #36363a;
-	/*font-family: "Open Sans", "Noto Sans", "Source Sans Pro", Verdana, Arial, sans-serif;*/
+	font-family: "Open Sans", "Noto Sans", "Source Sans Pro", Verdana, Arial, sans-serif;
 	font-weight: 500;
-	padding-bottom: 50px;
+	padding-bottom: 45px;
 }
 
 .hoverlink {
@@ -126,7 +126,7 @@ hr {
 	transition: opacity 1s ease;
 	visibility: hidden;
 	transform: translateX(-15vw);
-	backdrop-filter: blur(4px);
+	backdrop-filter: blur(3px);
 }
 
 .menuline {
@@ -169,7 +169,7 @@ hr {
 
 
 .settings_header {
-	font-weight: bold;
+	font-weight: 400;
 	font-size: 14pt;
 	text-align: center;
 	margin-bottom: 10px;
@@ -179,6 +179,7 @@ hr {
 	margin-top: 25px;
 	text-align: center;
 	align-items: center;
+	font-family: Open Sans;
 }
 
 button#apply, select {
@@ -214,12 +215,12 @@ select, option {
 }
 
 .icons a img {
-	filter: invert(calc(80/255));
+	filter: invert(calc(50/255));
 	transition: filter 0.2s ease-in-out;
 }
 
 .icons a img:hover {
-	filter: invert(calc(110/255));
+	filter: invert(calc(100/255));
 	transition: filter 0.2s ease-in-out;
 }
 
@@ -357,6 +358,7 @@ noscript {
 	}
 
 	.icons a img:hover {
-		filter: invert(calc(175/255));
+		filter: invert(calc(210/255));
 	}
+
 }
