@@ -1,5 +1,5 @@
 <h1>Homepage</h1>
-My newly created browser homepage! It's purpose was to learn a bit of front-end web dev (HTML, CSS and JavaScript), while keeping it simple and intuitive.  
+My newly created browser homepage! Its purpose was to learn a bit of front-end web dev (HTML, CSS, and JavaScript), while keeping it simple and intuitive.  
 <br /><br />
 
 **Light mode**
@@ -19,7 +19,7 @@ There are the 6 search engines available:
 Open the settings via the hamburger menu (located in the top left) and choose your preferred search engine.
 
 ## Live demo
-Here's a [live demo](https://anic17.github.io/homepage) of the homepage. The homepage will be added soon as a browser extension.
+Here's a [live demo](https://anic17.github.io/homepage) of the homepage.
 
 # Contributors
 <table>
@@ -30,7 +30,7 @@ Here's a [live demo](https://anic17.github.io/homepage) of the homepage. The hom
 </table>
 
 
-**Copyright &copy; 2023 anic17 Software**
+**Copyright &copy; 2024 anic17 Software**
 
 <!-- 
 View counter 
