@@ -30,7 +30,7 @@ Here's a [live demo](https://anic17.github.io/homepage) of the homepage.
 </table>
 
 
-**Copyright &copy; 2024 anic17 Software**
+**Copyright &copy; 2025 anic17 Software**
 
 <!-- 
 View counter 
