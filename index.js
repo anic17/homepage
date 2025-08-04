@@ -25,7 +25,7 @@ function getCookie(name) {
 
 /* Engine selection */
 
-const englist = ["DuckDuckGo", "Google", "Ecosia", "Brave", "Bing", "Yahoo"];
+const englist = ["DuckDuckGo", "Google", "Ecosia", "Brave", "Bing", "Yahoo", "Wikipedia", "Qwant"];
 const queryurl = [
   "https://duckduckgo.com/?q=",
   "https://www.google.com/search?q=",
@@ -33,6 +33,8 @@ const queryurl = [
   "https://search.brave.com/search?q=",
   "https://www.bing.com/search?q=",
   "https://search.yahoo.com/search?p=",
+  "https://en.wikipedia.org/w/index.php?search=",
+  "https://www.qwant.com/?q="
 ];
 
 function setSearchEngine(search) {
