@@ -1,24 +1,30 @@
-<h1>Homepage</h1>
-My newly created browser homepage! Its purpose was to learn a bit of front-end web dev (HTML, CSS, and JavaScript), while keeping it simple and intuitive.  
+# Homepage
+A very simple, minimalistic yet modern-looking browser homepage, featuring responsive design, automatic light and dark mode without making use of any external libraries to keep it quick — just what a browser homepage should be
 <br /><br />
 
 **Light mode**
-![lightmode](https://user-images.githubusercontent.com/58483910/193413393-dd3c6376-b7c2-4878-a334-cf430c8e0914.png)
+
+![lightmode](/assets/img/light.png)
+
+<hr/>
 
 **Dark mode**
-![darkmode](https://user-images.githubusercontent.com/58483910/193413396-9e4bcc81-de24-4773-bb52-7623ab75bfc8.png)
 
-There are the 6 search engines available:
+![darkmode](/assets/img/dark.png)
+
+This simple homepage has 8 different search engines to choose from to use the one that suits your needs best:
  - DuckDuckGo (default)
- - Google
- - Ecosia
- - Brave
  - Bing
+ - Brave
+ - Ecosia
+ - Google
+ - Qwant
+ - Wikipedia
  - Yahoo
 
-Open the settings via the hamburger menu (located in the top left) and choose your preferred search engine.
+Open the settings via the hamburger menu (located in the top left) and choose your preferred search engine. If you *really* want to make it even more minimalistic, you can also hide the quick icons located under the search via the settings menu.
 
-## Live demo
+## Live Demo
 Here's a [live demo](https://anic17.github.io/homepage) of the homepage.
 
 # Contributors
