@@ -1,5 +1,5 @@
 # Homepage
-A very simple, minimalistic yet modern-looking browser homepage, featuring responsive design, automatic light and dark mode without making use of any external libraries to keep it quick — just what a browser homepage should be
+A very simple, minimalistic yet modern-looking browser homepage, featuring responsive design, automatic light and dark mode switching, all without making use of any external libraries to keep it quick and light — just what a browser homepage should be.
 <br /><br />
 
 **Light mode**
