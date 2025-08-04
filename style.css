@@ -19,14 +19,18 @@ footer {
 	font-size: 10pt;
 }
 
+
 hr {
+	background-color: #959595;
+	border: none;
+}
+
+#hrfocus {
 	margin: auto;
 	width: 25vw;
 	align-self: center;
-	background-color: #959595;
-	height: 3px;
 	border-radius: 2px;
-	border: none;
+	height: 3px;
 }
 
 .layout {
@@ -65,18 +69,24 @@ hr {
 	transition: background-color 0.1s ease-in-out;
 }
 
-#searchbar:focus {
+#searchbar:focus,
+input[type="text"]#searchbar:hover {
 	background-color: #c0c0c3;
 	transition: background-color 0.1s ease;
 }
 
+
+
+#searchbar:focus::placeholder {
+	color: transparent;
+}
 
 #hrfocus {
 	background-color: #959595;
 	transition: background-color 0.1s ease-in-out;
 }
 
-#searchbar:focus ~ div ~ #hrfocus {
+#searchbar:focus~div~#hrfocus {
 	background-color: #a9a9c2;
 	transition: background-color 0.1s ease-in-out;
 }
@@ -85,7 +95,7 @@ hr {
 	color: #36363a;
 	font-family: "Open Sans", "Noto Sans", "Source Sans Pro", Verdana, Arial, sans-serif;
 	font-weight: 500;
-	padding-bottom: 45px;
+	padding-bottom: 60px;
 }
 
 .hoverlink {
@@ -111,7 +121,8 @@ hr {
 }
 
 
-#settings:hover, #settings_open:hover {
+#settings:hover,
+#settings_open:hover {
 	cursor: pointer;
 }
 
@@ -132,7 +143,7 @@ hr {
 .menuline {
 	box-sizing: border-box;
 	margin-top: 4px;
-	margin-bottom: 4px;
+	. margin-bottom: 4px;
 
 	width: 35px;
 	height: 4px;
@@ -159,7 +170,8 @@ hr {
 	transform: translateY(-12px) rotate(-45deg);
 }
 
-.line1, .line2 {
+.line1,
+.line2 {
 	width: 35px;
 	height: 4px;
 	background-color: #aaaaad;
@@ -168,11 +180,27 @@ hr {
 
 
 
+
+hr.settings_hr {
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+
+}
+
+.settings_header_div {
+	font-weight: 500;
+	font-size: 24pt;
+}
+
 .settings_header {
 	font-weight: 400;
 	font-size: 14pt;
 	text-align: center;
-	margin-bottom: 10px;
+	margin-bottom: 24px;
 }
 
 .settings_text {
@@ -180,9 +208,11 @@ hr {
 	text-align: center;
 	align-items: center;
 	font-family: Open Sans;
+	font-weight: lighter;
 }
 
-button#apply, select {
+button#apply,
+select {
 	width: 100px;
 	height: 30px;
 	background-color: #e2e2e6;
@@ -193,7 +223,8 @@ button#apply, select {
 }
 
 
-select, option {
+select,
+option {
 	vertical-align: middle;
 
 	border: none;
@@ -220,7 +251,7 @@ select, option {
 }
 
 .icons a img:hover {
-	filter: invert(calc(100/255));
+	filter: invert(calc(120/255));
 	transition: filter 0.2s ease-in-out;
 }
 
@@ -234,9 +265,37 @@ noscript {
 	color: inherit;
 }
 
-@media only screen and (max-width: 600px)
-{
-	
+.checkboxes_table {
+	width: 100%;
+	margin-right: 20px;
+	border-collapse: collapse;
+}
+
+td.checkboxes_td {
+	text-align: right;
+	padding: 2px 5px 2px 5px;
+	/* Optional: add some space between checkbox and label */
+}
+
+td+td {
+	text-align: left;
+	padding-left: 5px;
+}
+
+input[type="checkbox"] {
+	accent-color: darkslategray;
+}
+
+
+::selection {
+	background-color: #7e95a5;
+	color: #e2e2e6;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
 	.mainscreen {
 		width: calc(20vw - 600px/100vw);
 		margin-left: 10vw;
@@ -244,50 +303,50 @@ noscript {
 	}
 }
 
-@media only screen and (max-width: 720px)
-{
-	button#apply, select {
+@media only screen and (max-width: 720px) {
+
+	button#apply,
+	select {
 		width: 100px;
 	}
+
 	.mainscreen {
 		margin-left: 10vw;
 		margin-right: 10vw;
 	}
 }
 
-@media only screen and (max-width: 864px)
-{
-	hr {
+@media only screen and (max-width: 864px) {
+	hr#hrfocus {
 		width: 216px;
 	}
 }
 
-@media only screen and (max-width: 360px)
-{
-	hr {
+@media only screen and (max-width: 360px) {
+	hr#hrfocus {
 		width: 60vw;
 	}
 }
 
-@media only screen and (max-width: 992px)
-{
+@media only screen and (max-width: 992px) {
 	#searchbar {
 		width: 198.4px;
 	}
+
 	.settings_menu {
 		width: 148.8px;
 	}
 }
 
-@media only screen and (min-width: 1536px)
-{
+@media only screen and (min-width: 1536px) {
 	.settings_menu {
 		width: 230.4px;
 	}
 }
 
-@media only screen and (max-height: 320px) /* For extremely low resolutions */
-{
+@media only screen and (max-height: 320px)
+/* For extremely low resolutions */
+	{
 	.mainscreen {
 		margin-top: 96px;
 	}
@@ -295,13 +354,15 @@ noscript {
 }
 
 /* Themes */
-@media only screen and (prefers-color-scheme: dark)
-{
-	button#apply, select {
+@media only screen and (prefers-color-scheme: dark) {
+
+	button#apply,
+	select {
 		background-color: #56565b;
 		color: inherit;
 		border-color: #626268;
 	}
+
 	.settings_menu {
 
 		background-color: rgba(160, 160, 174, 0.2);
@@ -320,19 +381,21 @@ noscript {
 		background-color: #80808b;
 	}
 
-	#settings:hover .menuline, #settings_open:hover div {
+	#settings:hover .menuline,
+	#settings_open:hover div {
 		background-color: #d4d4d7;
 	}
 
 	body {
-		background-image: radial-gradient(#1e1e24, #202025, #1e1e24);
+		background-image: radial-gradient(#1d1d22, #1d1d29, #1d1d22);
 	}
 
-	hr, #hrfocus {
+	hr,
+	#hrfocus {
 		background-color: #656565;
 	}
 
-	#searchbar:focus ~ div ~ #hrfocus {
+	#searchbar:focus~div~#hrfocus {
 		background-color: #8f8f90;
 	}
 
@@ -345,20 +408,31 @@ noscript {
 		color: #9f9fa4;
 	}
 
-	#searchbar:focus {
+	#searchbar:focus,
+	input[type="text"]#searchbar:hover {
 		background-color: #353539;
 	}
+
+	input[type="checkbox"] {
+		accent-color: lightsteelblue;
+	}
+
 
 	.headers {
 		color: #b3b3b3;
 	}
-	
+
 	.icons a img {
 		filter: invert(calc(140/255));
 	}
 
 	.icons a img:hover {
-		filter: invert(calc(210/255));
+		filter: invert(calc(220/255));
+	}
+
+	::selection {
+		background-color: #5e7585;
+		color: #e2e2e6;
 	}
 
 }
