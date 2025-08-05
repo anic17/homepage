@@ -140,7 +140,18 @@
           </button>
           <br />
           <br />
-          <div id="settings_applied">Settings successfully applied</div>
+          <hr class="settings_hr" />
+          <br />
+          <button
+            id="reset"
+            onclick="resetSettings()"
+            title="Reset settings to default"
+          >
+            Reset settings
+          </button>
+          <br />
+          <br />
+          <div id="status"></div>
         </div>
         <br />
       </div>
@@ -162,6 +173,7 @@
           placeholder="Search with DuckDuckGo"
           title="Search the web"
           autofocus
+          onkeydown="searchWeb(event)"
         />
 
         <div class="icons">

@@ -23,9 +23,24 @@ function getCookie(name) {
   return "";
 }
 
+function deleteCookie(name) {
+  document.cookie = `${name}=; Expires=Thu, 01 Jan 1970 00:00:01 GMT; Path=/`;
+
+  window.localStorage.removeItem(name);
+}
+
 /* Engine selection */
 
-const englist = ["DuckDuckGo", "Google", "Ecosia", "Brave", "Bing", "Yahoo", "Wikipedia", "Qwant"];
+const englist = [
+  "DuckDuckGo",
+  "Google",
+  "Ecosia",
+  "Brave",
+  "Bing",
+  "Yahoo",
+  "Wikipedia",
+  "Qwant",
+];
 const queryurl = [
   "https://duckduckgo.com/?q=",
   "https://www.google.com/search?q=",
@@ -34,7 +49,7 @@ const queryurl = [
   "https://www.bing.com/search?q=",
   "https://search.yahoo.com/search?p=",
   "https://en.wikipedia.org/w/index.php?search=",
-  "https://www.qwant.com/?q="
+  "https://www.qwant.com/?q=",
 ];
 
 function setSearchEngine(search) {
@@ -60,20 +75,43 @@ function getSearchEngine() {
   }
   if (!baseurl) {
     console.log("Invalid default search engine (got " + engine + ")");
-    engine = "DuckDuckGo";
+    engine = englist[0]; // default to DuckDuckGo
   }
 
   setSearchEngine(engine);
   setPlaceholder(engine);
   setSelectDefault();
-  applyCheckbox();
   return baseurl;
+}
+
+function getQuickLinks() {
+  let ql = document.querySelectorAll(".checkboxes_td input");
+  for (let i = 0; i < ql.length; i++) {
+    // get the name of all the possible quick links
+    let style = getCookie(ql[i].id) == "true";
+    console.log(ql[i].id);
+    let icon_class = document.getElementsByClassName(ql[i].id)[0];
+    if (style) {
+      icon_class.setAttribute(
+        "style",
+        "visibility: visible; display: inline-block"
+      );
+    } else {
+      icon_class.setAttribute("style", "visibility: hidden; display: none");
+    }
+    document.getElementById(ql[i].id).checked = style;
+  }
+}
+
+function onLoadWindow() {
+  getSearchEngine();
+  getQuickLinks();
 }
 
 const searchBox = document.getElementById("searchbar");
 
-searchBox.addEventListener("keydown", e => {
-  if (e.code == "Enter") {
+function searchWeb(event) {
+  if (event.key === "Enter") {
     let textfield = document.getElementById("searchbar").value;
     if (textfield) {
       var regex = new RegExp("^(http://|https://)");
@@ -86,7 +124,7 @@ searchBox.addEventListener("keydown", e => {
       window.location.href = url;
     }
   }
-});
+}
 
 function choose(val) {
   if (val) return "block";
@@ -136,10 +174,9 @@ function showSettings() {
     .getElementById("settings")
     .setAttribute("style", "display: " + choose(!showSettings.openc));
 
-  // Hide "Settings applied"
-  document
-    .getElementById("settings_applied")
-    .setAttribute("style", "display: none");
+  if (showSettings.openc == 1)
+    // so the status message slides back in and disappears
+    setStatus("");
 }
 
 function setPlaceholder(eng) {
@@ -149,27 +186,23 @@ function setPlaceholder(eng) {
 }
 
 function applyCheckbox() {
-  var a = document.querySelectorAll(".checkboxes_td input");
-  console.log(a);
-  for (var i = 0; i < a.length; i++) {
+  let a = document.querySelectorAll(".checkboxes_td input");
+  for (let i = 0; i < a.length; i++) {
     // loop over the elements
     let style = a[i].checked;
-    let icon_class = document.getElementsByClassName(a[i].id)[0];
-    if (style)
-      icon_class.setAttribute(
-        "style",
-        "visibility: visible; display: inline-block"
-      );
-    else icon_class.setAttribute("style", "visibility: hidden; display: none");
+    setCookie(a[i].id, style, 20000); // save the state of the checkbox
   }
+  getQuickLinks();
+}
+
+function setStatus(text) {
+  document.getElementById("status").innerHTML = text;
+  console.log("status is " + document.getElementById("status").value);
 }
 
 function applySettings() {
   let engine = document.getElementById("settings_engine").value;
-  if (setSearchEngine(engine))
-    document
-      .getElementById("settings_applied")
-      .setAttribute("style", "display: block");
+  if (setSearchEngine(engine)) setStatus("Settings applied successfully");
 
   applyCheckbox();
 
@@ -177,4 +210,18 @@ function applySettings() {
   setSelectDefault();
 }
 
-window.onload = getSearchEngine();
+function resetSettings() {
+  engine = englist[0]; // reset to DuckDuckGo
+  setCookie("engine", engine, 20000);
+  let ql = document.querySelectorAll(".checkboxes_td input");
+  for (let i = 0; i < ql.length; i++) {
+    // reset the quick links to default
+    setCookie(ql[i].id, "true", 20000);
+  }
+  getQuickLinks();
+  setPlaceholder(englist[0]);
+  setSelectDefault();
+  setStatus("Settings reset to default");
+}
+
+window.addEventListener("load", onLoadWindow(), false);

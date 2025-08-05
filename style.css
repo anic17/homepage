@@ -45,9 +45,8 @@ hr {
 }
 
 .mainscreen {
-	margin-top: 30vh;
-	margin-left: 20vh;
-	margin-right: 20vh;
+	width: 60vw;
+	margin: 30vh auto 0 auto;
 	text-align: center;
 }
 
@@ -56,11 +55,11 @@ hr {
 }
 
 #searchbar {
-	border-style: border-box;
+	box-sizing: border-box;
 	border: none;
 	width: 20vw;
 	height: 45px;
-	border-radius: 6px;
+	border-radius: 8px;
 	text-align: center;
 	font-size: 11pt;
 	outline: none;
@@ -143,8 +142,7 @@ input[type="text"]#searchbar:hover {
 .menuline {
 	box-sizing: border-box;
 	margin-top: 4px;
-	. margin-bottom: 4px;
-
+	margin-bottom: 4px;
 	width: 35px;
 	height: 4px;
 	border-radius: 5px;
@@ -212,14 +210,15 @@ hr.settings_hr {
 }
 
 button#apply,
+button#reset,
 select {
 	width: 100px;
-	height: 30px;
+	height: 32px;
 	background-color: #e2e2e6;
 	color: inherit;
 	border-color: #a2a2a8;
 	border-width: 1px;
-	border-radius: 4px;
+	border-radius: 5px;
 }
 
 
@@ -295,26 +294,13 @@ input[type="checkbox"] {
 
 
 @media only screen and (max-width: 600px) {
-
 	.mainscreen {
-		width: calc(20vw - 600px/100vw);
+		width: 80vw;
 		margin-left: 10vw;
 		margin-right: 10vw;
 	}
 }
 
-@media only screen and (max-width: 720px) {
-
-	button#apply,
-	select {
-		width: 100px;
-	}
-
-	.mainscreen {
-		margin-left: 10vw;
-		margin-right: 10vw;
-	}
-}
 
 @media only screen and (max-width: 864px) {
 	hr#hrfocus {
@@ -353,10 +339,12 @@ input[type="checkbox"] {
 
 }
 
+
 /* Themes */
 @media only screen and (prefers-color-scheme: dark) {
 
 	button#apply,
+	button#reset,
 	select {
 		background-color: #56565b;
 		color: inherit;
@@ -396,7 +384,7 @@ input[type="checkbox"] {
 	}
 
 	#searchbar:focus~div~#hrfocus {
-		background-color: #8f8f90;
+		background-color: #9f9fa0;
 	}
 
 	.text {
