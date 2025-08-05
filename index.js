@@ -88,7 +88,7 @@ function getQuickLinks() {
   let ql = document.querySelectorAll(".checkboxes_td input");
   for (let i = 0; i < ql.length; i++) {
     // get the name of all the possible quick links
-    let style = getCookie(ql[i].id) == "true";
+    let style = !(getCookie(ql[i].id) == "false"); // set style to true if the cookie does not exist or is true
     console.log(ql[i].id);
     let icon_class = document.getElementsByClassName(ql[i].id)[0];
     if (style) {
