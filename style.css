@@ -9,7 +9,7 @@ html {
 }
 
 body {
-	background-image: radial-gradient(#e2e2e6, #eaeaec, #e2e2e6);
+	background-image: radial-gradient(#dbdbe1, #dbdbe8, #dbdbe1);
 }
 
 footer {
@@ -51,7 +51,7 @@ hr {
 }
 
 .text {
-	color: #36363a;
+	color: #222226;
 }
 
 #searchbar {
@@ -63,14 +63,14 @@ hr {
 	text-align: center;
 	font-size: 11pt;
 	outline: none;
-	background-color: #cccccf;
-	color: #36363a;
+	background-color: #c2c2cb;
+	color: #121216;
 	transition: background-color 0.1s ease-in-out;
 }
 
 #searchbar:focus,
 input[type="text"]#searchbar:hover {
-	background-color: #c0c0c3;
+	background-color: #cacad0;
 	transition: background-color 0.1s ease;
 }
 
@@ -91,7 +91,7 @@ input[type="text"]#searchbar:hover {
 }
 
 .headers {
-	color: #36363a;
+	color: #222226;
 	font-family: "Open Sans", "Noto Sans", "Source Sans Pro", Verdana, Arial, sans-serif;
 	font-weight: 500;
 	padding-bottom: 60px;
@@ -107,7 +107,7 @@ input[type="text"]#searchbar:hover {
 }
 
 .hoverlink:active {
-	color: #26262a;
+	color: #222226;
 }
 
 #settings {
@@ -130,8 +130,8 @@ input[type="text"]#searchbar:hover {
 	padding-top: 40px;
 	width: 15vw;
 	min-height: 100%;
-	background-color: rgba(60, 60, 74, 0.2);
-	color: #49494e;
+	background-color: rgba(95, 95, 108, 0.2);
+	color: #222226;
 	z-index: 1;
 	transition: opacity 1s ease;
 	visibility: hidden;
@@ -146,7 +146,7 @@ input[type="text"]#searchbar:hover {
 	width: 35px;
 	height: 4px;
 	border-radius: 5px;
-	background-color: #aaaaad;
+	background-color: #9a9a9d;
 	transition: background-color 0.2s ease;
 }
 
@@ -172,7 +172,7 @@ input[type="text"]#searchbar:hover {
 .line2 {
 	width: 35px;
 	height: 4px;
-	background-color: #aaaaad;
+	background-color: #8c8c92;
 	transition: background-color 0.2s ease;
 }
 
@@ -214,11 +214,12 @@ button#reset,
 select {
 	width: 100px;
 	height: 32px;
-	background-color: #e2e2e6;
+	background-color: #dbdbeb;
 	color: inherit;
-	border-color: #a2a2a8;
+	border-color: #b2b2c2;
 	border-width: 1px;
 	border-radius: 5px;
+	box-shadow: none;
 }
 
 
@@ -282,7 +283,7 @@ td+td {
 }
 
 input[type="checkbox"] {
-	accent-color: darkslategray;
+	accent-color: rgb(7, 84, 93);
 }
 
 
@@ -319,7 +320,7 @@ input[type="checkbox"] {
 		width: 198.4px;
 	}
 
-	.settings_menu {
+	 {
 		width: 148.8px;
 	}
 }
@@ -393,7 +394,7 @@ input[type="checkbox"] {
 
 	#searchbar {
 		background-color: #29292d;
-		color: #dfdfe3;
+		color: #ff0000;
 	}
 
 	#searchbar:focus,
