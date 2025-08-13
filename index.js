@@ -114,7 +114,7 @@ function searchWeb(event) {
   if (event.key === "Enter") {
     let textfield = document.getElementById("searchbar").value;
     if (textfield) {
-      var regex = new RegExp("^(http://|https://)");
+      var regex = new RegExp("^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?\/?$"); // this crazy looking regex checks if the input is a URL taken from https://stackoverflow.com/a/42619410/12613647
       let url;
       if (regex.test(textfield)) {
         url = textfield;
