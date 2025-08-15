@@ -64,7 +64,7 @@ function setSelectDefault() {
   document.getElementById("settings_engine").value = getCookie("engine");
 }
 
-function getSearchEngine() {
+function getSearchEngine(init) {
   let engine = getCookie("engine");
 
   let baseurl = null;
@@ -77,10 +77,12 @@ function getSearchEngine() {
     console.log("Invalid default search engine (got " + engine + ")");
     engine = englist[0]; // default to DuckDuckGo
   }
+  if (init) {
+    setSearchEngine(engine);
+    setPlaceholder(engine);
+    setSelectDefault();
+  }
 
-  setSearchEngine(engine);
-  setPlaceholder(engine);
-  setSelectDefault();
   return baseurl;
 }
 
@@ -89,7 +91,6 @@ function getQuickLinks() {
   for (let i = 0; i < ql.length; i++) {
     // get the name of all the possible quick links
     let style = !(getCookie(ql[i].id) == "false"); // set style to true if the cookie does not exist or is true
-    console.log(ql[i].id);
     let icon_class = document.getElementsByClassName(ql[i].id)[0];
     if (style) {
       icon_class.setAttribute(
@@ -104,22 +105,49 @@ function getQuickLinks() {
 }
 
 function onLoadWindow() {
-  getSearchEngine();
+  getSearchEngine(true);
   getQuickLinks();
 }
 
-const searchBox = document.getElementById("searchbar");
+function getTLD(url) {
+  url = url.replace(/^(https?:\/\/|ftp:\/\/)/, "");
+  let domain = url.split("/")[0];
+  let parts = domain.split(".");
+  return parts.length > 1 ? parts[parts.length - 1] : null;
+}
 
 function searchWeb(event) {
   if (event.key === "Enter") {
-    let textfield = document.getElementById("searchbar").value;
+    let textfield = document.getElementById("searchbar").value.trim();
+
     if (textfield) {
-      var regex = new RegExp("^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?\/?$"); // this crazy looking regex checks if the input is a URL taken from https://stackoverflow.com/a/42619410/12613647
+      // Detect URLs
+      const urlRegex =
+        /\b(?:https?|ftp):\/\/[^\s]+|\bwww\.[^\s]+|\b(?!\d+\.\d+$)(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:\/[^\s]*)?\b/;
+      const rejectRegex = /\.[^a-zA-Z]{2,}$/; // TLD must be at least 2 characters long A-Z
+      const schemeRegex = /^(?:ftp|https?):\/\//i; // if URL starts with http/https/ftp scheme
+      const tldRegex = /[^a-zA-Z]/; // TLD must not contain non-alphabetic characters
+      const ipRegex = /^([0-9]{1,3}\.){3}[0-9]{1,3}(?::\d{1,5})?$/; // IPv4 addresses and optional port
       let url;
-      if (regex.test(textfield)) {
-        url = textfield;
+      let tld = getTLD(textfield);
+      let ipRegexEval = ipRegex.test(textfield);
+      if (
+        ((urlRegex.test(textfield) && !rejectRegex.test(textfield)) ||
+          ipRegexEval) &&
+        !/\s/.test(textfield) &&
+        ((!tldRegex.test(tld) &&
+          tld.length >= 2 &&
+          tld.length <= 63 &&
+          !ipRegexEval) ||
+          ipRegexEval)
+      ) {
+        url = textfield; // URL detected
+
+        if (!schemeRegex.test(url)) {
+          url = "http://" + url;
+        }
       } else {
-        url = getSearchEngine() + encodeURIComponent(textfield);
+        url = getSearchEngine(false) + encodeURIComponent(textfield); // Text
       }
       window.location.href = url;
     }
@@ -197,7 +225,6 @@ function applyCheckbox() {
 
 function setStatus(text) {
   document.getElementById("status").innerHTML = text;
-  console.log("status is " + document.getElementById("status").value);
 }
 
 function applySettings() {
