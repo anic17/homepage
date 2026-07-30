@@ -64,11 +64,7 @@ function setSearchEngine(search) {
   if (englist.includes(search)) {
     setCookie("engine", search, 400);
     if (search == "Custom") {
-      setCookie(
-        "custom_url",
-        document.getElementById("custom_url").value,
-        400,
-      );
+      setCookie("custom_url", document.getElementById("custom_url").value, 400);
       setCookie(
         "custom_placeholder",
         document.getElementById("custom_placeholder").value,
@@ -120,18 +116,32 @@ function getSearchEngine(init) {
 function getQuickLinks() {
   let ql = document.querySelectorAll(".checkboxes_td input");
   for (let i = 0; i < ql.length; i++) {
-    // get the name of all the possible quick links
-    let style = !(getCookie(ql[i].id) == "false"); // set style to true if the cookie does not exist or is true
-    let icon_class = document.getElementsByClassName(ql[i].id)[0];
-    if (style) {
-      icon_class.setAttribute(
-        "style",
-        "visibility: visible; display: inline-block",
-      );
-    } else {
-      icon_class.setAttribute("style", "visibility: hidden; display: none");
-    }
+    // get the state of the cookie
+    let style = !(getCookie(ql[i].id) == "false");
+
     document.getElementById(ql[i].id).checked = style;
+
+    // handle <hr> for the "divider_line" checkbox
+    if (ql[i].id === "divider_line") {
+      let hrFocus = document.getElementById("hrfocus");
+      if (hrFocus) {
+        hrFocus.style.display = style ? "block" : "none";
+      }
+      continue;
+    }
+
+    // normal icon handling
+    let icon_class = document.getElementsByClassName(ql[i].id)[0];
+    if (icon_class) {
+      if (style) {
+        icon_class.setAttribute(
+          "style",
+          "visibility: visible; display: inline-block",
+        );
+      } else {
+        icon_class.setAttribute("style", "visibility: hidden; display: none");
+      }
+    }
   }
 }
 
@@ -154,48 +164,44 @@ function getTLD(url) {
 const schemeRegex = /^(?:ftp|https?):\/\//i;
 
 function isValidURL(url) {
-    const urlRegex =
-        /\b(?:https?|ftp):\/\/[^\s]+|\bwww\.[^\s]+|\b(?!\d+\.\d+$)(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:\/[^\s]*)?\b/;
+  const urlRegex =
+    /\b(?:https?|ftp):\/\/[^\s]+|\bwww\.[^\s]+|\b(?!\d+\.\d+$)(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:\/[^\s]*)?\b/;
 
-    const rejectRegex = /\.[^a-zA-Z]{2,}$/;
-    const tldRegex = /[^a-zA-Z]/;
-    const ipRegex = /^([0-9]{1,3}\.){3}[0-9]{1,3}(?::\d{1,5})?$/;
+  const rejectRegex = /\.[^a-zA-Z]{2,}$/;
+  const tldRegex = /[^a-zA-Z]/;
+  const ipRegex = /^([0-9]{1,3}\.){3}[0-9]{1,3}(?::\d{1,5})?$/;
 
-    const tld = getTLD(url);
-    const isIP = ipRegex.test(url);
+  const tld = getTLD(url);
+  const isIP = ipRegex.test(url);
 
-    return (
-        ((urlRegex.test(url) && !rejectRegex.test(url)) || isIP) &&
-        !/\s/.test(url) &&
-        ((!tldRegex.test(tld) &&
-            tld.length >= 2 &&
-            tld.length <= 63 &&
-            !isIP) ||
-            isIP)
-    );
+  return (
+    ((urlRegex.test(url) && !rejectRegex.test(url)) || isIP) &&
+    !/\s/.test(url) &&
+    ((!tldRegex.test(tld) && tld.length >= 2 && tld.length <= 63 && !isIP) ||
+      isIP)
+  );
 }
 
 function searchWeb(event) {
-    if (event.key !== "Enter") return;
+  if (event.key !== "Enter") return;
 
-    const textfield = document.getElementById("searchbar").value.trim();
-    if (!textfield) return;
+  const textfield = document.getElementById("searchbar").value.trim();
+  if (!textfield) return;
 
-    let url;
+  let url;
 
-    if (isValidURL(textfield)) {
-        url = textfield;
+  if (isValidURL(textfield)) {
+    url = textfield;
 
-        if (!schemeRegex.test(url)) {
-            url = "http://" + url;
-        }
-    } else {
-        url = getSearchEngine(false) + encodeURIComponent(textfield);
+    if (!schemeRegex.test(url)) {
+      url = "http://" + url;
     }
+  } else {
+    url = getSearchEngine(false) + encodeURIComponent(textfield);
+  }
 
-    window.location.href = url;
+  window.location.href = url;
 }
-
 
 function choose(val) {
   if (val) return "block";
@@ -219,7 +225,7 @@ function showSettings() {
         transition: all 0.3s ease;
         transform: translateX(-100%);
     `;
-  
+
   let settings_height = document.documentElement.getBoundingClientRect().height;
   document.querySelector(".settings_menu").style.cssText =
     "min-height: " + settings_height + "px";
@@ -243,7 +249,7 @@ function showSettings() {
 }
 
 function setPlaceholder(eng) {
-  if(eng == "Custom") {
+  if (eng == "Custom") {
     eng = getCookie("custom_placeholder");
   }
   let searchbar = document.getElementById("searchbar");
@@ -299,7 +305,7 @@ function resetSettings() {
   setStatus("Settings reset to default");
 }
 
-window.addEventListener("load", onLoadWindow, false);
+document.addEventListener("DOMContentLoaded", onLoadWindow);
 
 textarea1.addEventListener("keydown", e => {
   if (e.key === "Enter") {
@@ -331,24 +337,25 @@ document.getElementById("settings_engine").onchange = function () {
   }
 };
 
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keydown", e => {
   const isCmdOrCtrl = e.ctrlKey || e.metaKey;
-  if (isCmdOrCtrl && e.key.toLowerCase() === "k") {  // Ctrl-K to focus the search bar
+  if (isCmdOrCtrl && e.key.toLowerCase() === "k") {
+    // Ctrl-K to focus the search bar
     e.preventDefault();
-    
+
     const searchbar = document.getElementById("searchbar");
     if (searchbar) {
       searchbar.focus();
       searchbar.select(); // selects previous text so the user can overwrite it easily
     }
   }
-  if (isCmdOrCtrl && (e.key === "." || e.key === ",") ) {  // Both Ctrl-. or Ctrl-, to toggle settings menu!
+  if (isCmdOrCtrl && (e.key === "." || e.key === ",")) {
+    // Both Ctrl-. or Ctrl-, to toggle settings menu!
     e.preventDefault();
     showSettings(); // Triggers your existing toggle function
   }
-  if(showSettings.openc == 1 && e.key === "Escape") {
+  if (showSettings.openc == 1 && e.key === "Escape") {
     e.preventDefault();
     showSettings(); // Close settings menu on Escape key
   }
 });
-
