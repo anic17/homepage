@@ -32,33 +32,56 @@ function deleteCookie(name) {
 /* Engine selection */
 
 const englist = [
-  "DuckDuckGo",
-  "Google",
-  "Ecosia",
-  "Brave",
+  "DuckDuckGo", // default
   "Bing",
-  "Yahoo",
-  "Wikipedia",
+  "Brave",
+  "Ecosia",
+  "Google",
+  "Karma",
   "Qwant",
+  "Reddit",
+  "Wikipedia",
+  "Yahoo",
+  "YouTube",
+  "Custom",
 ];
 const queryurl = [
   "https://duckduckgo.com/?q=",
-  "https://www.google.com/search?q=",
-  "https://www.ecosia.org/search?q=",
-  "https://search.brave.com/search?q=",
   "https://www.bing.com/search?q=",
-  "https://search.yahoo.com/search?p=",
-  "https://en.wikipedia.org/w/index.php?search=",
+  "https://search.brave.com/search?q=",
+  "https://www.ecosia.org/search?q=",
+  "https://www.google.com/search?q=",
+  "https://karmasearch.org/search?q=",
   "https://www.qwant.com/?q=",
+  "https://www.reddit.com/search/?q=",
+  "https://en.wikipedia.org/w/index.php?search=",
+  "https://search.yahoo.com/search?p=",
+  "https://www.youtube.com/results?search_query=",
+  "",
 ];
 
 function setSearchEngine(search) {
   if (englist.includes(search)) {
-    setCookie("engine", search, 20000);
+    setCookie("engine", search, 400);
+    if (search == "Custom") {
+      setCookie(
+        "custom_url",
+        document.getElementById("custom_url").value,
+        400,
+      );
+      setCookie(
+        "custom_placeholder",
+        document.getElementById("custom_placeholder").value,
+        400,
+      );
+    }
     return true;
   }
   return false;
 }
+
+const textarea1 = document.getElementById("custom_url");
+const textarea2 = document.getElementById("custom_placeholder");
 
 function setSelectDefault() {
   document.getElementById("settings_engine").value = getCookie("engine");
@@ -68,15 +91,23 @@ function getSearchEngine(init) {
   let engine = getCookie("engine");
 
   let baseurl = null;
-  for (let k = 0; k < englist.length; k++) {
-    if (engine == englist[k]) {
-      baseurl = queryurl[k];
+
+  if (engine == "Custom") {
+    baseurl = getCookie("custom_url");
+    console.log("Custom search engine URL: " + baseurl);
+    document.getElementById("custom_url").value = baseurl;
+  } else {
+    for (let k = 0; k < englist.length; k++) {
+      if (engine == englist[k]) {
+        baseurl = queryurl[k];
+      }
+    }
+    if (!baseurl) {
+      console.log("Invalid default search engine (got " + engine + ")");
+      engine = englist[0]; // default to DuckDuckGo
     }
   }
-  if (!baseurl) {
-    console.log("Invalid default search engine (got " + engine + ")");
-    engine = englist[0]; // default to DuckDuckGo
-  }
+
   if (init) {
     setSearchEngine(engine);
     setPlaceholder(engine);
@@ -95,7 +126,7 @@ function getQuickLinks() {
     if (style) {
       icon_class.setAttribute(
         "style",
-        "visibility: visible; display: inline-block"
+        "visibility: visible; display: inline-block",
       );
     } else {
       icon_class.setAttribute("style", "visibility: hidden; display: none");
@@ -107,6 +138,10 @@ function getQuickLinks() {
 function onLoadWindow() {
   getSearchEngine(true);
   getQuickLinks();
+  if (getCookie("engine") == "Custom") {
+    textarea1.disabled = false;
+    textarea2.disabled = false;
+  }
 }
 
 function getTLD(url) {
@@ -116,43 +151,51 @@ function getTLD(url) {
   return parts.length > 1 ? parts[parts.length - 1] : null;
 }
 
-function searchWeb(event) {
-  if (event.key === "Enter") {
-    let textfield = document.getElementById("searchbar").value.trim();
+const schemeRegex = /^(?:ftp|https?):\/\//i;
 
-    if (textfield) {
-      // Detect URLs
-      const urlRegex =
+function isValidURL(url) {
+    const urlRegex =
         /\b(?:https?|ftp):\/\/[^\s]+|\bwww\.[^\s]+|\b(?!\d+\.\d+$)(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:\/[^\s]*)?\b/;
-      const rejectRegex = /\.[^a-zA-Z]{2,}$/; // TLD must be at least 2 characters long A-Z
-      const schemeRegex = /^(?:ftp|https?):\/\//i; // if URL starts with http/https/ftp scheme
-      const tldRegex = /[^a-zA-Z]/; // TLD must not contain non-alphabetic characters
-      const ipRegex = /^([0-9]{1,3}\.){3}[0-9]{1,3}(?::\d{1,5})?$/; // IPv4 addresses and optional port
-      let url;
-      let tld = getTLD(textfield);
-      let ipRegexEval = ipRegex.test(textfield);
-      if (
-        ((urlRegex.test(textfield) && !rejectRegex.test(textfield)) ||
-          ipRegexEval) &&
-        !/\s/.test(textfield) &&
+
+    const rejectRegex = /\.[^a-zA-Z]{2,}$/;
+    const tldRegex = /[^a-zA-Z]/;
+    const ipRegex = /^([0-9]{1,3}\.){3}[0-9]{1,3}(?::\d{1,5})?$/;
+
+    const tld = getTLD(url);
+    const isIP = ipRegex.test(url);
+
+    return (
+        ((urlRegex.test(url) && !rejectRegex.test(url)) || isIP) &&
+        !/\s/.test(url) &&
         ((!tldRegex.test(tld) &&
-          tld.length >= 2 &&
-          tld.length <= 63 &&
-          !ipRegexEval) ||
-          ipRegexEval)
-      ) {
-        url = textfield; // URL detected
+            tld.length >= 2 &&
+            tld.length <= 63 &&
+            !isIP) ||
+            isIP)
+    );
+}
+
+function searchWeb(event) {
+    if (event.key !== "Enter") return;
+
+    const textfield = document.getElementById("searchbar").value.trim();
+    if (!textfield) return;
+
+    let url;
+
+    if (isValidURL(textfield)) {
+        url = textfield;
 
         if (!schemeRegex.test(url)) {
-          url = "http://" + url;
+            url = "http://" + url;
         }
-      } else {
-        url = getSearchEngine(false) + encodeURIComponent(textfield); // Text
-      }
-      window.location.href = url;
+    } else {
+        url = getSearchEngine(false) + encodeURIComponent(textfield);
     }
-  }
+
+    window.location.href = url;
 }
+
 
 function choose(val) {
   if (val) return "block";
@@ -174,17 +217,9 @@ function showSettings() {
   let hideMenu = `
         visibility: hidden;
         transition: all 0.3s ease;
-        transform: 
+        transform: translateX(-100%);
     `;
-  let vw = window.innerWidth;
-  if (vw >= 1536) {
-    hideMenu += "translateX(-230.4px);";
-  } else if (vw < 1536 && vw > 992) {
-    hideMenu += "translateX(-15vw);";
-  } else {
-    hideMenu += "translateX(-148.8px);";
-  }
-
+  
   let settings_height = document.documentElement.getBoundingClientRect().height;
   document.querySelector(".settings_menu").style.cssText =
     "min-height: " + settings_height + "px";
@@ -208,6 +243,9 @@ function showSettings() {
 }
 
 function setPlaceholder(eng) {
+  if(eng == "Custom") {
+    eng = getCookie("custom_placeholder");
+  }
   let searchbar = document.getElementById("searchbar");
   searchbar.placeholder = "Search with " + eng;
   searchbar.value = ""; // clear the search bar
@@ -218,7 +256,7 @@ function applyCheckbox() {
   for (let i = 0; i < a.length; i++) {
     // loop over the elements
     let style = a[i].checked;
-    setCookie(a[i].id, style, 20000); // save the state of the checkbox
+    setCookie(a[i].id, style, 400); // save the state of the checkbox
   }
   getQuickLinks();
 }
@@ -232,23 +270,85 @@ function applySettings() {
   if (setSearchEngine(engine)) setStatus("Settings applied successfully");
 
   applyCheckbox();
-
-  setPlaceholder(engine);
+  if (getCookie("engine") == "Custom") {
+    setPlaceholder(document.getElementById("custom_placeholder").value);
+  } else {
+    setPlaceholder(engine);
+  }
   setSelectDefault();
 }
 
 function resetSettings() {
-  engine = englist[0]; // reset to DuckDuckGo
-  setCookie("engine", engine, 20000);
+  let engine = englist[0]; // reset to DuckDuckGo
+  setCookie("engine", engine, 400);
   let ql = document.querySelectorAll(".checkboxes_td input");
   for (let i = 0; i < ql.length; i++) {
     // reset the quick links to default
-    setCookie(ql[i].id, "true", 20000);
+    setCookie(ql[i].id, "true", 400);
   }
   getQuickLinks();
-  setPlaceholder(englist[0]);
+  setPlaceholder(engine);
   setSelectDefault();
+  deleteCookie("custom_url");
+  deleteCookie("custom_placeholder");
+  textarea1.value = "";
+  textarea1.disabled = true;
+  textarea2.value = "";
+  textarea2.disabled = true;
+
   setStatus("Settings reset to default");
 }
 
-window.addEventListener("load", onLoadWindow(), false);
+window.addEventListener("load", onLoadWindow, false);
+
+textarea1.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    e.preventDefault(); // do not allow newlines in the URL textarea1, ignore enter key
+  }
+});
+
+textarea1.addEventListener("input", () => {
+  textarea1.value = textarea1.value.replace(/[\r\n]+/g, " "); // we replace newlines with spaces
+});
+
+textarea2.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    e.preventDefault(); // do not allow newlines in the placeholder textarea2, ignore enter key
+  }
+});
+
+textarea2.addEventListener("input", () => {
+  textarea2.value = textarea2.value.replace(/[\r\n]+/g, " "); // we replace newlines with spaces
+});
+
+document.getElementById("settings_engine").onchange = function () {
+  if (document.getElementById("settings_engine").value === "Custom") {
+    textarea1.disabled = false;
+    textarea2.disabled = false;
+  } else {
+    textarea1.disabled = true;
+    textarea2.disabled = true;
+  }
+};
+
+document.addEventListener("keydown", (e) => {
+  const isCmdOrCtrl = e.ctrlKey || e.metaKey;
+  if (isCmdOrCtrl && e.key.toLowerCase() === "k") {  // Ctrl-K to focus the search bar
+    e.preventDefault();
+    
+    const searchbar = document.getElementById("searchbar");
+    if (searchbar) {
+      searchbar.focus();
+      searchbar.select(); // selects previous text so the user can overwrite it easily
+    }
+  }
+  if (isCmdOrCtrl && (e.key === "." || e.key === ",") ) {  // Both Ctrl-. or Ctrl-, to toggle settings menu!
+    e.preventDefault();
+    showSettings(); // Triggers your existing toggle function
+  }
+  if(showSettings.openc == 1 && e.key === "Escape") {
+    e.preventDefault();
+    showSettings(); // Close settings menu on Escape key
+  }
+});
+
