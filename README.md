@@ -12,17 +12,30 @@ A very simple, minimalistic yet modern-looking browser homepage, featuring respo
 
 ![darkmode](/assets/img/dark.png)
 
-This simple homepage has 8 different search engines to choose from to use the one that suits your needs best:
- - DuckDuckGo (default)
+This simple homepage has 11 different search engines to choose from to use the one that suits your needs best:
+ - **DuckDuckGo** (default)
  - Bing
  - Brave
  - Ecosia
  - Google
+ - Karma
  - Qwant
+ - Reddit
  - Wikipedia
  - Yahoo
+ - YouTube
 
+Furthermore, the new version allows you to use your own search engine by putting its base URL. For example, DuckDuckGo's base URL is `https://duckduckgo.com/?q=` and Google's one is `https://www.google.com/search?q=`.  
+The horizontal divider bar under the input box can now be toggled as part of the website's settings.  
 Open the settings via the hamburger menu (located in the top left) and choose your preferred search engine. If you *really* want to make it even more minimalistic, you can also hide the quick icons located under the search via the settings menu.
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|---|---|
+| `Ctrl + K` | Focus search bar |
+| `Ctrl + .` | Toggle settings menu |
+| `Esc` | Close settings menu |
 
 ## Live Demo
 Here's a [live demo](https://anic17.github.io/homepage) of the homepage.
