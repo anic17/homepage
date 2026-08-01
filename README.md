@@ -49,9 +49,4 @@ Here's a [live demo](https://anic17.github.io/homepage) of the homepage.
 </table>
 
 
-**Copyright &copy; 2025 anic17 Software**
-
-<!-- 
-View counter 
--->
-<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fanic17%2Fhomepage&count_bg=%23FFFFFF&title_bg=%23FFFFFF&icon=&icon_color=%23FFFFFF&title=hits&edge_flat=false" height=0 width=0>
+**Copyright &copy; 2026 anic17 Software**
