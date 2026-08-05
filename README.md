@@ -1,5 +1,5 @@
 # Homepage
-A very simple, minimalistic yet modern-looking browser homepage, featuring responsive design, automatic light and dark mode switching, all without making use of any external libraries to keep it quick and light — just what a browser homepage should be.
+A simple, minimalist, modern, and distraction-free yet browser homepage, featuring responsive design, automatic light and dark mode switching, without using any external libraries — just what a browser homepage should be.
 <br /><br />
 
 **Light mode**
@@ -12,7 +12,7 @@ A very simple, minimalistic yet modern-looking browser homepage, featuring respo
 
 ![darkmode](/assets/img/dark.png)
 
-This simple homepage has 11 different search engines to choose from to use the one that suits your needs best:
+Choose from 11 built-in search engines:
  - **DuckDuckGo** (default)
  - Bing
  - Brave
@@ -25,10 +25,25 @@ This simple homepage has 11 different search engines to choose from to use the o
  - Yahoo
  - YouTube
 
-Furthermore, the new version allows you to use your own search engine by putting its base URL. For example, DuckDuckGo's base URL is `https://duckduckgo.com/?q=` and Google's one is `https://www.google.com/search?q=`.  
-The horizontal divider bar under the input box can now be toggled as part of the website's settings.  
-Open the settings via the hamburger menu (located in the top left) and choose your preferred search engine. If you *really* want to make it even more minimalistic, you can also hide the quick icons located under the search via the settings menu.
+Using the **Settings** menu (accessible from the hamburger button in the top-left corner), you can:
+- Select your preferred search engine
+- If none of them fit your needs, use a custom search engine
+- Change the search placeholder text (when using a custom search engine)
+- Show or hide individual quick links
+- Toggle the divider beneath the search bar for an even more minimalist look
+- 
+## Custom Search Engine
 
+The latest new version allows you to use your own search engine by putting its base URL. For example, DuckDuckGo's base URL is `https://duckduckgo.com/?q=` and Google's one is `https://www.google.com/search?q=`. Remove all metadata and unnecessary parameters and include *only* its base URL.
+
+## Quick Links
+
+The quick links can be individually enabled or disabled. By default, they are grouped into three categories:
+
+- **Coding:** GitHub, Stack Overflow
+- **Productivity:** LinkedIn, Wikipedia
+- **Leisure:** YouTube, Reddit, Strava
+- 
 ## Keyboard Shortcuts
 
 | Shortcut | Action |
@@ -38,7 +53,7 @@ Open the settings via the hamburger menu (located in the top left) and choose yo
 | `Esc` | Close settings menu |
 
 ## Live Demo
-Here's a [live demo](https://anic17.github.io/homepage) of the homepage.
+Here's a [live demo](https://anic17.github.io/homepage) of the homepage, try it!
 
 # Contributors
 <table>
