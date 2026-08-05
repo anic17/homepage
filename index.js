@@ -92,6 +92,8 @@ function getSearchEngine(init) {
     baseurl = getCookie("custom_url");
     console.log("Custom search engine URL: " + baseurl);
     document.getElementById("custom_url").value = baseurl;
+    document.getElementById("custom_placeholder").value =
+      getCookie("custom_placeholder");
   } else {
     for (let k = 0; k < englist.length; k++) {
       if (engine == englist[k]) {
@@ -218,8 +220,7 @@ function showSettings() {
         visibility: visible;
         transition: all 0.3s ease;
         transform: translateX(0px);
-
-    `;
+      `;
   let hideMenu = `
         visibility: hidden;
         transition: all 0.3s ease;
@@ -273,7 +274,8 @@ function setStatus(text) {
 
 function applySettings() {
   let engine = document.getElementById("settings_engine").value;
-  if (setSearchEngine(engine)) setStatus("Settings applied successfully");
+  if (setSearchEngine(engine))
+    setStatus("Settings applied successfully<br>&nbsp;"); // &nbsp; forces a newline
 
   applyCheckbox();
   if (getCookie("engine") == "Custom") {
@@ -302,7 +304,7 @@ function resetSettings() {
   textarea2.value = "";
   textarea2.disabled = true;
 
-  setStatus("Settings reset to default");
+  setStatus("Settings reset to default<br>&nbsp;");
 }
 
 document.addEventListener("DOMContentLoaded", onLoadWindow);

@@ -130,17 +130,21 @@
                 </td>
                 <td><label for="strava" title="Strava">Strava</label></td>
               </tr>
-             <tr class="spacer">
+              <tr class="spacer">
                 <td colspan="2"></td>
               </tr>
               <tr class="divider_checkbox">
                 <td class="checkboxes_td">
-                  <input type="checkbox" id="divider_line" checked/>
+                  <input type="checkbox" id="divider_line" checked />
                 </td>
-                <td><label for="divider_line" title="Divider line">Show divider line</label></td>
+                <td>
+                  <label for="divider_line" title="Divider line"
+                    >Show divider line</label
+                  >
+                </td>
               </tr>
             </table>
-            
+
             <br />
             <h2 class="settings_header">Custom Search URL</h2>
             <textarea
@@ -162,6 +166,7 @@
           </div>
 
           <br />
+          <hr class="settings_hr" />
           <br />
 
           <button
@@ -172,8 +177,7 @@
             Apply
           </button>
           <br />
-          <br />
-          <hr class="settings_hr" />
+
           <br />
           <button
             id="reset"
@@ -185,31 +189,41 @@
           <br />
           <br />
           <div id="status"></div>
-          <br />
-          <hr class="settings_hr" />
-          <br />
-          <h2 class="settings_header">Keyboard Shortcuts</h2>
-          <table class="checkboxes_table">
-            <tr>
-              <td class="checkboxes_td">
-                <kbd>Ctrl + K</kbd>
-              </td>
-              <td>Focus search bar</td>
-            </tr>
-            <tr>
-              <td class="checkboxes_td">
-                <kbd>Ctrl + .</kbd>
-              </td>
-              <td>Toggle settings</td>
-            </tr>
-            <tr>
-              <td class="checkboxes_td">
-                <kbd>Esc</kbd>
-              </td>
-              <td>Close settings</td>
-            </tr>
-          </table>
+          <div id="keyboard_shortcuts">
+            <hr class="settings_hr" />
+            <br />
+            <h2 class="settings_header">Keyboard Shortcuts</h2>
+            <table class="checkboxes_table">
+              <tr>
+                <td class="checkboxes_td">
+                  <kbd>Ctrl + K</kbd>
+                </td>
+                <td>Focus search bar</td>
+              </tr>
+              <tr>
+                <td class="checkboxes_td">
+                  <kbd>Ctrl + .</kbd>
+                </td>
+                <td>Toggle settings</td>
+              </tr>
+              <tr>
+                <td class="checkboxes_td">
+                  <kbd>Esc</kbd>
+                </td>
+                <td>Close settings</td>
+              </tr>
+            </table>
+            <br />
+          </div>
+          <a
+            class="hoverlink github_link"
+            href="https://github.com/anic17/homepage"
+            target="_blank"
+          >
+            <span>View on GitHub ↗</span>
+          </a>
         </div>
+
         <br />
       </div>
       <!-- Ends the settings part -->
@@ -232,6 +246,7 @@
           autofocus
           onkeydown="searchWeb(event)"
         />
+        <hr id="hrfocus" />
 
         <div class="icons">
           <a href="https://github.com" class="github"
@@ -284,15 +299,11 @@
               title="Strava"
           /></a>
         </div>
-        <hr id="hrfocus" />
-
-        <br />
       </div>
       <footer class="text">
         Made by
         <a class="hoverlink" href="https://anic17.github.io">anic17</a>.
-        <a class="hoverlink" href="https://github.com/anic17/homepage"
-          >View source</a
+        <a class="hoverlink" href="https://github.com/anic17/homepage">Source</a
         >.<br />
       </footer>
     </div>

@@ -24,23 +24,35 @@
 }
 
 html {
-	min-height: 100%
+	min-height: 100%;
 }
 
 body {
-	background-image: radial-gradient(#e1e1e3, #e7e7ec, #e1e1e3);
+	background-image: radial-gradient(#e1e1f2, #dcdcea, #d9d9e8);
 }
 
 footer {
 	margin-right: 10px;
 	text-align: right;
 	margin-bottom: 10px;
-	font-size: 10pt;
-	opacity: 0.8;
+	font-size: 9pt;
+	opacity: 0.5;
+	transition: opacity 0.1s ease-in-out;
 }
 
 footer:hover {
 	opacity: 1;
+	transition: opacity 0.1s ease-in-out;
+}
+
+.github_link {
+	font-size: 11pt;
+	opacity: 0.6;
+	transition: opacity 0.1s ease-in-out;
+}
+
+.github_link:hover {
+	opacity: 0.9;
 	transition: opacity 0.1s ease-in-out;
 }
 
@@ -52,10 +64,13 @@ hr {
 
 #hrfocus {
 	margin: auto;
-	width: 22.5vw;
+	margin-top: 20px;
+	width: 24vw;
 	align-self: center;
-	border-radius: 2px;
 	height: 2px;
+	opacity: 0.5;
+	background-color: #959595;
+	transition: background-color 0.1s ease-in-out;
 }
 
 .layout {
@@ -80,17 +95,29 @@ hr {
 }
 
 #searchbar {
-	box-sizing: border-box;
-	border: none;
-	width: 20vw;
-	height: 45px;
-	border-radius: 8px;
-	text-align: center;
-	font-size: 11pt;
-	outline: none;
 	background-color: #c2c2cb;
+	border-radius: 8px;
+	border: none;
+	box-shadow: 0 0 0px transparent;
+	box-sizing: border-box;
 	color: #121216;
-	transition: background-color 0.2s ease-out;
+	font-size: 11pt;
+
+	height: 45px;
+	width: 22.5vw;
+
+	outline: none;
+	text-align: center;
+	transition: all 0.2s ease-out;
+}
+
+#searchbar:focus {
+	box-shadow: 0 0 40px #d9e4f7;
+}
+
+#searchbar::placeholder {
+	color: inherit;
+	opacity: 0.7;
 }
 
 #custom_url,
@@ -111,9 +138,9 @@ hr {
 #searchbar:focus,
 input[type="text"]#searchbar:hover,
 #custom_url:focus,
-textarea[type="text"]#custom_url:hover,
+textarea#custom_url:hover,
 #custom_placeholder:focus,
-textarea[type="text"]#custom_placeholder:hover {
+textarea#custom_placeholder:hover {
 	background-color: #cacad0;
 	transition: background-color 0.1s ease-out;
 }
@@ -126,7 +153,7 @@ textarea {
 
 textarea:disabled {
 	background-color: #d2d2d8 !important;
-	opacity: 0.45;
+	opacity: 0.55;
 	transition: opacity 0.1s ease-in-out;
 	cursor: not-allowed;
 }
@@ -138,22 +165,19 @@ textarea:disabled {
 	color: transparent;
 }
 
-#hrfocus {
-	background-color: #959595;
-	transition: background-color 0.1s ease-in-out;
-}
-
 #searchbar:focus~div~#hrfocus,
 #custom_url:focus~div~#hrfocus,
 #custom_placeholder:focus~div~#hrfocus {
 	background-color: #a9a9c2;
-	transition: background-color 0.1s ease-in-out;
+	transition: background-color 0.1s ease-in-out, opacity 0.1s ease-in-out;
+	opacity: 0;
 }
 
 .headers {
 	color: #222226;
 	font-family: "Open sans", "Source Sans 3", Verdana, Arial, sans-serif;
 	font-weight: 400;
+	font-size: 26pt;
 	padding-bottom: 60px;
 }
 
@@ -190,17 +214,33 @@ textarea:disabled {
 	top: 0;
 	left: 0;
 	height: 100vh;
-	padding-top: 40px;
-	width: 17.5vw;
+	padding-top: 38px;
+	width: 16.5vw;
 	min-height: 100%;
-	background-color: rgba(95, 95, 108, 0.2);
+	background-color: rgba(95, 95, 108, 0.15);
 	color: #222226;
 	z-index: 1;
 	visibility: hidden;
-	transform: translateX(-17.5vw);
-	backdrop-filter: blur(3px);
+	transform: translateX(-16.5vw);
+	backdrop-filter: blur(4px);
 	overflow-y: auto;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(160, 160, 170, 0.8) transparent;
 }
+
+.settings_menu::-webkit-scrollbar {
+	width: 6px;
+}
+
+.settings_menu::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.settings_menu::-webkit-scrollbar-thumb {
+	background-color: rgba(160, 160, 170, 0.8);
+	border-radius: 10px;
+}
+
 
 .menuline {
 	box-sizing: border-box;
@@ -209,17 +249,23 @@ textarea:disabled {
 	width: 35px;
 	height: 4px;
 	border-radius: 5px;
-	background-color: #9a9a9d;
+	background-color: #9a9a9a;
 	transition: background-color 0.2s ease-out;
+}
+
+#settings:hover .menuline,
+#settings_open:hover div {
+	background-color: #636363;
+	/* same color as the quick link icons when hovered */
 }
 
 #settings_open {
 	display: none;
-	margin: 6px 10px 10px 10px;
+	margin-top: 6px;
+	margin-left: 12px;
 	box-sizing: border-box;
 	position: absolute;
 	z-index: 2;
-	display: none;
 }
 
 .line1 {
@@ -233,10 +279,11 @@ textarea:disabled {
 
 .line1,
 .line2 {
-	width: 35px;
+	width: 30px;
 	height: 4px;
 	background-color: #8c8c92;
 	transition: background-color 0.2s ease;
+	border-radius: 1px;
 }
 
 
@@ -254,14 +301,16 @@ hr.settings_hr {
 
 .settings_header_div {
 	font-weight: 500;
-	font-size: 24pt;
+	font-size: 22pt;
+	margin-bottom: 8px;
 }
 
 .settings_header {
 	font-weight: 400;
 	font-size: 14pt;
 	text-align: center;
-	margin-bottom: 24px;
+	margin-bottom: 26px;
+	margin-top: 2px;
 }
 
 .settings_text {
@@ -275,14 +324,24 @@ hr.settings_hr {
 button#apply,
 button#reset,
 select {
-	width: 100px;
+	width: 110px;
 	height: 32px;
 	background-color: #dbdbe6;
 	color: inherit;
 	border-color: #b2b2c2;
 	border-width: 1px;
-	border-radius: 5px;
+	border-radius: 6px;
 	box-shadow: none;
+	transition: all 0.1s ease-in-out;
+}
+
+button:active {
+	opacity: 0.8;
+	transition: all 0.1s ease-in-out;
+}
+
+#status {
+	white-space: pre-line;
 }
 
 
@@ -298,8 +357,7 @@ option {
 }
 
 .icons {
-	margin-top: 28px;
-	margin-bottom: 14px;
+	margin-top: 16px;
 }
 
 .icons a {
@@ -321,13 +379,14 @@ option {
 }
 
 .icons a img {
-	filter: invert(calc(50/255));
-	transition: filter 0.2s ease-out;
+	filter: invert(calc(60/255));
+	transition: transform 0.1s ease, filter 0.2s ease-out;
 }
 
 .icons a img:hover {
 	filter: invert(calc(120/255));
-	transition: filter 0.2s ease-out;
+	transition: transform 0.1s ease, filter 0.2s ease-out;
+	transform: scale(1.05);
 }
 
 #settings_applied {
@@ -371,7 +430,28 @@ input[type="checkbox"] {
 	color: #e2e2e6;
 }
 
+kbd {
+	border: 1px solid #333;
+	border-radius: 2px;
+	font-size: 0.9em;
+}
 
+#keyboard_shortcuts {
+	display: block;
+}
+
+kbd,
+textarea {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+}
+
+@media only screen and (max-width: 480px) {
+	#keyboard_shortcuts {
+		display: none;
+	}
+
+}
 
 @media only screen and (max-width: 600px) {
 	.mainscreen {
@@ -381,28 +461,21 @@ input[type="checkbox"] {
 	}
 }
 
-
-@media only screen and (max-width: 864px) {
-	hr#hrfocus {
-		width: 194.4px;
-	}
-}
-
-@media only screen and (max-width: 360px) {
-	hr#hrfocus {
-		width: 60vw;
-	}
-}
-
 @media only screen and (max-width: 992px) {
 	#searchbar {
-		width: 198.4px;
+		width: 223.2px;
+	}
+
+	#hrfocus {
+		max-width: 238.1px;
+		min-width: 223.2px;
 	}
 }
 
-@media only screen and (min-width: 1536px) {
+
+@media only screen and (max-width: 1536px) {
 	.settings_menu {
-		width: 268.8px;
+		width: 253.4px;
 	}
 }
 
@@ -414,18 +487,10 @@ input[type="checkbox"] {
 	}
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (min-width: 2048px) {
 	.settings_menu {
-		width: 224px;
+		width: 337.9px;
 	}
-}
-
-
-kbd {
-	border: 1px solid #333;
-	border-radius: 2px;
-	font-size: 100%;
-	font-family: monospace;
 }
 
 /* Themes */
@@ -441,9 +506,16 @@ kbd {
 
 	.settings_menu {
 
-		background-color: rgba(160, 160, 174, 0.2);
+		background-color: rgba(160, 160, 174, 0.15);
 		color: #d4d4d7;
+		scrollbar-color: rgba(128, 128, 138, 0.8) transparent;
 	}
+
+	.settings_menu::-webkit-scrollbar-thumb {
+		background-color: rgba(128, 128, 138, 0.8);
+	}
+
+
 
 	#settings_applied {
 		color: #d4d4d7;
@@ -454,16 +526,18 @@ kbd {
 	}
 
 	.menuline {
-		background-color: #80808b;
+		background-color: #8c8c8c;
+		/* same color as the quick link icons */
 	}
 
 	#settings:hover .menuline,
 	#settings_open:hover div {
-		background-color: #d4d4d7;
+		background-color: #e5e5e5;
+		/* same color as the quick link icons when hovered */
 	}
 
 	body {
-		background-image: radial-gradient(#1d1d24, #1d1d2b, #1d1d24);
+		background-image: radial-gradient(#1d1d2e, #1d1d2a, #1d1d25);
 	}
 
 	hr,
@@ -475,6 +549,10 @@ kbd {
 	#custom_url:focus~div~#hrfocus,
 	#custom_placeholder:focus~div~#hrfocus {
 		background-color: #9f9fa0;
+	}
+
+	#searchbar:focus {
+		box-shadow: 0 0 40px #1f1f39;
 	}
 
 	.text {
@@ -491,18 +569,20 @@ kbd {
 	#searchbar:focus,
 	input[type="text"]#searchbar:hover,
 	#custom_url:focus,
-	textarea[type="text"]#custom_url:hover,
+	textarea#custom_url:hover,
 	#custom_placeholder:focus,
-	textarea[type="text"]#custom_placeholder:hover {
+	textarea#custom_placeholder:hover {
 		background-color: #39393c;
 	}
 
 	textarea:disabled {
 		background-color: #3d3d44 !important;
+		opacity: 0.4;
+
 	}
 
 	input[type="checkbox"] {
-		accent-color: #405c91;
+		accent-color: #425b96;
 	}
 
 
@@ -511,7 +591,7 @@ kbd {
 	}
 
 	kbd {
-		border: 1px solid #ccc;
+		border-color: #ccc;
 	}
 
 	.icons a img {
