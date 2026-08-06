@@ -34,7 +34,7 @@ Using the **Settings** menu (accessible from the hamburger button in the top-lef
 - 
 ## Custom Search Engine
 
-The latest new version allows you to use your own search engine by putting its base URL. For example, DuckDuckGo's base URL is `https://duckduckgo.com/?q=` and Google's one is `https://www.google.com/search?q=`. Remove all metadata and unnecessary parameters and include *only* its base URL.
+The latest version allows you to use your own search engine by putting its base URL. For example, DuckDuckGo's base URL is `https://duckduckgo.com/?q=` and Google's one is `https://www.google.com/search?q=`. Remove all metadata and unnecessary parameters and include *only* its base URL.
 
 ## Quick Links
 
@@ -43,7 +43,7 @@ The quick links can be individually enabled or disabled. By default, they are gr
 - **Coding:** GitHub, Stack Overflow
 - **Productivity:** LinkedIn, Wikipedia
 - **Leisure:** YouTube, Reddit, Strava
-- 
+
 ## Keyboard Shortcuts
 
 | Shortcut | Action |
