@@ -31,7 +31,7 @@ Using the **Settings** menu (accessible from the hamburger button in the top-lef
 - Change the search placeholder text (when using a custom search engine)
 - Show or hide individual quick links
 - Toggle the divider beneath the search bar for an even more minimalist look
-- 
+
 ## Custom Search Engine
 
 The latest version allows you to use your own search engine by putting its base URL. For example, DuckDuckGo's base URL is `https://duckduckgo.com/?q=` and Google's one is `https://www.google.com/search?q=`. Remove all metadata and unnecessary parameters and include *only* its base URL.
