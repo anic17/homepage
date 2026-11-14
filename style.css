@@ -120,6 +120,15 @@ hr {
 	opacity: 0.8;
 }
 
+.custom_info_text {
+	font-size: 9pt;
+	opacity: 0.7;
+	margin-top: 16px;
+	padding-left: 12px;
+	padding-right: 12px;
+	line-height: 130%;
+}
+
 #custom_url,
 #custom_placeholder {
 	box-sizing: border-box;
@@ -279,7 +288,7 @@ textarea:disabled {
 
 .line1,
 .line2 {
-	width: 32px;
+	width: 30px;
 	height: 4px;
 	background-color: #8c8c92;
 	transition: background-color 0.2s ease;
@@ -380,14 +389,14 @@ option {
 
 .icons a img {
 	filter: invert(calc(60/255));
-	transition: transform 0.1s ease, filter 0.2s ease-out;
+	transition: transform 0.2s ease, filter 0.2s ease-out;
 	
 }
 
 .icons a img:hover {
 	filter: invert(calc(120/255));
-	transition: transform 0.1s ease, filter 0.2s ease-out;
-	transform: scale(1.05);
+	transition: transform 0.2s ease, filter 0.2s ease-out;
+	transform: scale(1.03);
 }
 
 #settings_applied {
@@ -538,7 +547,7 @@ textarea {
 	}
 
 	body {
-		background-image: radial-gradient(#1d1d30, #1d1d2a, #1d1d25);
+		background-image: radial-gradient(#1d1d35, #1d1d2a, #1d1d25);
 	}
 
 	hr,
@@ -553,7 +562,7 @@ textarea {
 	}
 
 	#searchbar:focus {
-		box-shadow: 0 0 40px #1f1f39;
+		box-shadow: 0 0 60px #1f1f46;
 	}
 
 	.text {
